@@ -1,0 +1,898 @@
+<title>Yadah-G Insurance Brokers</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<meta name="description" content="Yadah-G Global Insurance Brokers, Lagos. NAICOM-licensed broker since 2004 for motor, home, group life, health, industrial all risk, professional indemnity and reinsurance placement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a deep-green "underwriting desk" band holds a live policy schedule; the rest of the page is a calm paper ledger of covers, claims and renewals. */
+:root{
+  --paper:#F4F7F2; --card:#FFFFFF; --ink:#12201A; --muted:#56675D; --line:#D7E0D8;
+  --leaf:#23803F; --leaf-ink:#FFFFFF; --leaf-soft:#E2F0E5;
+  --band:#0E3F2E; --band-2:#14533C; --on-band:#EAF3EC; --on-band-muted:#A9C7B4;
+  --seal:#B5822A; --seal-soft:#F6EBD5;
+  --ok:#23803F; --warn:#B26B00; --bad:#B42318; --warn-soft:#FBEFD9; --bad-soft:#FBE4E1;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1512; --card:#15201B; --ink:#E5EEE8; --muted:#9BAEA3; --line:#26352D;
+  --leaf:#4FBF71; --leaf-ink:#06140C; --leaf-soft:#1A3326;
+  --band:#0A261C; --band-2:#103425; --on-band:#E5F1E9; --on-band-muted:#93B4A0;
+  --seal:#D9A94A; --seal-soft:#332914;
+  --ok:#4FBF71; --warn:#E3A13B; --bad:#F07467; --warn-soft:#33270F; --bad-soft:#3A1A17;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0D1512; --card:#15201B; --ink:#E5EEE8; --muted:#9BAEA3; --line:#26352D;
+  --leaf:#4FBF71; --leaf-ink:#06140C; --leaf-soft:#1A3326;
+  --band:#0A261C; --band-2:#103425; --on-band:#E5F1E9; --on-band-muted:#93B4A0;
+  --seal:#D9A94A; --seal-soft:#332914;
+  --ok:#4FBF71; --warn:#E3A13B; --bad:#F07467; --warn-soft:#33270F; --bad-soft:#3A1A17;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--band)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 .74rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--leaf)}
+.lede{color:var(--muted);max-width:60ch;font-size:1.06rem}
+.sec{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid;gap:12px;margin-bottom:36px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--seal);outline-offset:2px;border-radius:6px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--seal);color:#1B1305}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-leaf{background:var(--leaf);color:var(--leaf-ink)}
+.btn-ghost{background:transparent;border:1.5px solid currentColor}
+.btn-sm{padding:8px 14px;font-size:.9rem}
+.wa-ico{width:18px;height:18px;flex:none}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--band);color:var(--on-band);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand{background:#FFFFFF;border-radius:10px;padding:5px 10px;flex:none}
+.brand img{display:block;height:40px;width:auto}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;color:var(--on-band)}
+.nav a:hover{background:rgba(255,255,255,.08)}
+.top-cta{display:flex;gap:8px;align-items:center}
+.menu-btn{display:none;background:none;border:1.5px solid rgba(255,255,255,.3);color:var(--on-band);border-radius:10px;padding:7px 12px;font-weight:600;cursor:pointer}
+@media (max-width:980px){
+  .nav{display:none}.menu-btn{display:inline-flex;margin-left:auto}
+  .top-cta .btn-ghost{display:none}
+  .nav.open{display:grid;grid-template-columns:1fr 1fr;gap:4px;position:absolute;left:0;right:0;top:68px;background:var(--band-2);padding:12px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav.open a{font-size:.95rem;padding:10px 12px;background:rgba(255,255,255,.05)}
+}
+@media (max-width:520px){.top-cta .btn-primary{display:none}}
+
+/* hero */
+.hero{background:var(--band);color:var(--on-band);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(600px 300px at 85% 0%,rgba(181,130,42,.18),transparent 70%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 96px)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);padding-block:clamp(40px,6vw,76px) clamp(48px,7vw,88px);align-items:start}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:var(--seal)}
+.hero .lede{color:var(--on-band-muted);margin-top:18px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .btn-ghost{color:var(--on-band)}
+.creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.cred{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;font-size:.86rem;color:var(--on-band)}
+.cred b{font:500 .68rem/1 var(--mono);letter-spacing:.1em;color:var(--seal);text-transform:uppercase}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+
+/* policy schedule (quote card) */
+.schedule{background:var(--card);color:var(--ink);border-radius:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);overflow:hidden;min-width:0}
+.sch-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px dashed var(--line);font:500 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sch-head .no{color:var(--seal)}
+.tabs{display:flex;gap:6px;padding:14px 20px 4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 13px;font-size:.88rem;font-weight:600;cursor:pointer;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--leaf);border-color:var(--leaf);color:var(--leaf-ink)}
+.sch-body{padding:14px 20px 4px;display:grid;gap:14px}
+.f{display:grid;gap:6px;min-width:0}
+.f label{font-size:.82rem;font-weight:600;color:var(--muted)}
+.inp{width:100%;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 12px;font-size:1rem;min-width:0}
+.inp:focus{border-color:var(--leaf);outline:none}
+.money{position:relative}.money .inp{padding-left:30px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.money::before{content:"₦";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-family:var(--mono)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:440px){.row2{grid-template-columns:1fr}}
+.hint{font-size:.78rem;color:var(--muted)}
+.sch-total{margin:14px 20px 0;padding:16px;border-radius:12px;background:var(--leaf-soft);display:grid;gap:4px}
+.sch-total .k{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sch-total .v{font:700 clamp(1.5rem,3.6vw,2rem)/1.15 var(--display);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sch-total .s{font-size:.82rem;color:var(--muted)}
+.sch-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:16px 20px 20px}
+.sch-foot .hint{max-width:30ch}
+
+/* covers */
+.cover-groups{display:grid;gap:40px}
+.cg h3{font:600 .78rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.covers{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.cover{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start;grid-template-rows:auto auto 1fr auto}
+.cover .ic{width:40px;height:40px;border-radius:10px;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center}
+.cover .ic svg{width:22px;height:22px}
+.cover p{color:var(--muted);font-size:.94rem}
+.cover .link{background:none;border:0;padding:0;color:var(--leaf);font-weight:700;cursor:pointer;text-align:left;justify-self:start}
+.cover .tag{font:500 .68rem/1 var(--mono);letter-spacing:.08em;color:var(--seal);text-transform:uppercase}
+
+/* broker steps */
+.steps-sec{background:var(--card);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
+.step{padding:22px 22px 6px;border-left:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.step:first-child{border-left:0;padding-left:0}
+.step .n{font:500 .78rem/1 var(--mono);color:var(--seal)}
+.step p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;gap:20px}.step{border-left:0;padding:0}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* forms & panels */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,28px);display:grid;gap:16px;min-width:0}
+.panel h3{font-size:1.35rem}
+.panel .sub{color:var(--muted);font-size:.94rem;margin-top:-8px}
+form.grid{display:grid;gap:14px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{border-radius:12px;padding:16px;background:var(--leaf-soft);display:grid;gap:10px}
+.done .ref{font:600 1.15rem/1 var(--mono);color:var(--ink);letter-spacing:.04em}
+.done-actions{display:flex;flex-wrap:wrap;gap:8px}
+.err{color:var(--bad);font-size:.88rem}
+.files{font-size:.85rem}
+.chipset{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;font-size:.88rem;font-weight:600;background:transparent;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* claim tracker */
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding-bottom:16px;position:relative}
+.timeline li::before{content:"";position:absolute;left:10px;top:20px;bottom:0;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:.7rem;color:var(--leaf-ink)}
+.timeline li.on .dot{background:var(--leaf);border-color:var(--leaf)}
+.timeline li.now .dot{box-shadow:0 0 0 5px var(--leaf-soft)}
+.timeline .t{font-weight:600}
+.timeline li:not(.on) .t{color:var(--muted);font-weight:500}
+.timeline .d{font-size:.84rem;color:var(--muted)}
+.track-res{border-top:1px dashed var(--line);padding-top:16px;display:grid;gap:14px}
+.kv{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem}
+.kv span{color:var(--muted)}
+.kv b{font-family:var(--mono);font-weight:500}
+
+/* renewal */
+.countdown{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.countdown .big{font:800 2.6rem/1 var(--display);font-variant-numeric:tabular-nums}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--leaf-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+
+/* business band */
+.biz{background:var(--band);color:var(--on-band)}
+.biz .lede{color:var(--on-band-muted)}
+.biz .eyebrow{color:var(--seal)}
+.biz-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,60px);align-items:start}
+@media (max-width:900px){.biz-grid{grid-template-columns:1fr}}
+.biz-list{display:grid;gap:0;margin-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.biz-list div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.biz-list span{color:var(--on-band-muted);font-size:.9rem;text-align:right}
+.biz .panel{color:var(--ink)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,60px)}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}}
+.ledger{display:grid;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.ledger div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ledger div:last-child{border-bottom:0}
+.ledger dt{font:500 .72rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ledger dd{margin:0;font-weight:500}
+@media (max-width:480px){.ledger div{grid-template-columns:1fr;gap:2px}}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:14px}
+.faq summary::after{content:"+";font:500 1.3rem/1 var(--mono);color:var(--leaf)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--muted);margin-top:10px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.cline{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.cline dt{font:500 .72rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cline dd{margin:0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere}
+.copy{border:1px solid var(--line);background:transparent;border-radius:8px;padding:4px 9px;font-size:.78rem;cursor:pointer;color:var(--muted)}
+
+footer{background:var(--band);color:var(--on-band-muted);font-size:.88rem}
+footer .wrap{padding-block:36px;display:grid;gap:18px}
+footer .frow{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a{color:var(--on-band);text-decoration:none}
+footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
+
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.45)}
+.wa-float svg{width:30px;height:30px}
+
+.preview-bar{background:var(--seal-soft);color:var(--ink);font-size:.84rem;text-align:center;padding:8px 16px}
+
+/* ADMIN */
+#admin{min-height:100vh;background:var(--paper)}
+.adm-top{background:var(--band);color:var(--on-band)}
+.adm-top .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.adm-top .live{margin-left:auto;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.1)}
+.adm-login{max-width:420px;margin:60px auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.adm-body{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;padding-block:24px}
+@media (max-width:820px){.adm-body{grid-template-columns:1fr}}
+.adm-nav{display:grid;gap:4px;align-content:start}
+@media (max-width:820px){.adm-nav{display:flex;overflow-x:auto;gap:6px}}
+.adm-nav button{display:flex;justify-content:space-between;gap:10px;text-align:left;border:0;background:transparent;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--muted);flex:none}
+.adm-nav button[aria-current="true"]{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.adm-nav .cnt{font:500 .75rem/1.6 var(--mono);color:var(--seal)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat .k{font:500 .68rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font:700 1.7rem/1.2 var(--display);font-variant-numeric:tabular-nums}
+.items{display:grid;gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;min-width:0}
+.item-h{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.item-h .ref{font:500 .85rem/1 var(--mono);color:var(--seal)}
+.item-h .who{font-weight:700}
+.item-h .when{margin-left:auto;font-size:.8rem;color:var(--muted)}
+.item pre{margin:0;white-space:pre-wrap;font:.88rem/1.5 var(--body);color:var(--muted);overflow-wrap:anywhere}
+.item-act{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.item-act .inp{width:auto;padding:7px 10px;font-size:.9rem}
+.item-act .note{flex:1 1 200px}
+.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.rates{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;font-weight:600;z-index:80;font-size:.92rem}
+</style>
+
+<div id="site">
+<div class="preview-bar" id="previewBar" hidden>Preview mode: forms save in this browser only. Once deployed on Cloudflare they go to the team's inbox.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Yadah-G Global Insurance Brokers, home"><img src="assets/logo.png" alt="YGGIB Insurance Brokers" width="140" height="51"></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#covers">Covers</a>
+      <a href="#claims">Claims</a>
+      <a href="#renewals">Renewals</a>
+      <a href="#business">Business</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="top-cta">
+      <a class="btn btn-ghost btn-sm" href="#claims">Report a claim</a>
+      <a class="btn btn-primary btn-sm" href="#top" data-focus-quote>Get a quote</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:var(--seal)">Licensed insurance broker · Lagos · Since 2004</p>
+      <h1 style="margin-top:16px">We shop the insurers. <em>You keep the cover.</em></h1>
+      <p class="lede">Yadah-G compares NAICOM-licensed insurers for your car, home, staff and business, places the policy, then stands beside you when you claim. Get an estimate in seconds below.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#quote">Get firm quotes</a>
+        <a class="btn btn-ghost" id="heroWa" href="#" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Chat on WhatsApp</a>
+      </div>
+      <div class="creds">
+        <div class="cred"><b>NAICOM</b>Licensed broker</div>
+        <div class="cred"><b>NCRIB</b>Registered member</div>
+        <div class="cred"><b>CAC</b>Incorporated 24 Feb 2004</div>
+      </div>
+    </div>
+
+    <div class="schedule" aria-label="Instant premium estimate">
+      <div class="sch-head"><span>Premium estimate</span><span class="no" id="schNo">YG/EST/—</span></div>
+      <div class="tabs" role="tablist" id="qTabs"></div>
+      <div class="sch-body" id="qFields"></div>
+      <div class="sch-total" aria-live="polite">
+        <span class="k" id="qTotalK">Estimated annual premium</span>
+        <span class="v" id="qTotal">—</span>
+        <span class="s" id="qTotalS"></span>
+      </div>
+      <div class="sch-foot">
+        <span class="hint">Indicative only. Final premium depends on the insurer's underwriting.</span>
+        <a class="btn btn-leaf" href="#quote" id="qGo">Get firm quotes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="covers">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we place</p>
+      <h2>What do you want to protect?</h2>
+      <p class="lede">We cover general, life and reinsurance business. Pick a cover to see an estimate, or tell us about something unusual and we'll find the market for it.</p>
+    </div>
+    <div class="cover-groups" id="coverGroups"></div>
+  </div>
+</section>
+
+<section class="sec steps-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Why use a broker</p>
+      <h2>One conversation, several insurers.</h2>
+      <p class="lede">An insurer can only sell you its own policy. A broker works for you, and our commission is paid by the insurer, not added to your bill.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">Step 1</span><h3>Tell us the risk</h3><p>Your car, building, staff list or contract. Five minutes on the phone or the form below.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>We go to market</h3><p>We collect quotes from licensed insurers and compare price, cover and claims record.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>You choose</h3><p>We explain the differences in plain language. You pay the insurer and we deliver the policy.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>We stay for the claim</h3><p>If something happens, we file, chase and negotiate the claim on your behalf until it's paid.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="quote">
+  <div class="wrap split">
+    <div class="sec-head" style="margin:0;align-content:start">
+      <p class="eyebrow">Firm quotes</p>
+      <h2>Get quotes from several insurers.</h2>
+      <p class="lede">Send us the details once. We'll come back with the options side by side, by WhatsApp, call or email, whichever you prefer.</p>
+      <dl style="margin:18px 0 0">
+        <div class="cline"><dt>Call</dt><dd><span class="phone-text">+234 802 321 6201</span></dd></div>
+        <div class="cline"><dt>Email</dt><dd>info@yadahg.com</dd></div>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3>Quote request</h3>
+      <form class="grid" id="quoteForm" data-kind="quote" novalidate>
+        <div class="row2">
+          <div class="f"><label for="qName">Full name</label><input class="inp" id="qName" name="name" required autocomplete="name"></div>
+          <div class="f"><label for="qPhone">Phone / WhatsApp</label><input class="inp" id="qPhone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="0803 000 0000"></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label for="qEmail">Email (optional)</label><input class="inp" id="qEmail" name="email" type="email" autocomplete="email"></div>
+          <div class="f"><label for="qCompany">Company (optional)</label><input class="inp" id="qCompany" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="f"><label for="qProduct">Cover</label><select class="inp" id="qProduct" name="product"></select></div>
+        <div class="f"><label for="qDetails">Details</label><textarea class="inp" id="qDetails" name="details" rows="4" placeholder="E.g. 2021 Toyota Camry, private use, Lekki"></textarea><span class="hint">Your estimate from above is added here automatically.</span></div>
+        <div class="f"><label>Best way to reach you</label>
+          <div class="chipset" data-chip="contactVia"><button type="button" class="chip" aria-pressed="true">WhatsApp</button><button type="button" class="chip" aria-pressed="false">Call</button><button type="button" class="chip" aria-pressed="false">Email</button></div>
+        </div>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" hidden></p>
+        <button class="btn btn-leaf" type="submit">Send quote request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec steps-sec" id="claims">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Claims</p>
+      <h2>Something happened? Start here.</h2>
+      <p class="lede">Report it as soon as you can. Most policies ask for notice within a few days. You'll get a claim reference to track progress with us, from first notice to payment.</p>
+    </div>
+    <div class="split">
+      <div class="panel">
+        <h3>Report a claim</h3>
+        <form class="grid" id="claimForm" data-kind="claim" novalidate>
+          <div class="row2">
+            <div class="f"><label for="cName">Policyholder name</label><input class="inp" id="cName" name="name" required></div>
+            <div class="f"><label for="cPhone">Phone / WhatsApp</label><input class="inp" id="cPhone" name="phone" required inputmode="tel"></div>
+          </div>
+          <div class="row2">
+            <div class="f"><label for="cPolicy">Policy number (if known)</label><input class="inp" id="cPolicy" name="policy" style="font-family:var(--mono)"></div>
+            <div class="f"><label for="cDate">Date of incident</label><input class="inp" id="cDate" name="incidentDate" type="date" required></div>
+          </div>
+          <div class="f"><label for="cType">Type of claim</label>
+            <select class="inp" id="cType" name="claimType"><option>Motor accident / damage</option><option>Motor theft</option><option>Fire or flood damage</option><option>Burglary / theft at premises</option><option>Death claim (group or individual life)</option><option>Medical / health</option><option>Goods lost or damaged in transit</option><option>Professional indemnity</option><option>Other</option></select></div>
+          <div class="f"><label for="cDesc">What happened?</label><textarea class="inp" id="cDesc" name="description" rows="4" required placeholder="Where, when and how it happened, and anyone else involved"></textarea></div>
+          <div class="f"><label for="cFiles">Photos or documents (up to 4)</label><input class="inp files" id="cFiles" type="file" accept="image/*,.pdf" multiple><span class="hint">Police report, photos of damage, invoices. You can also send these later on WhatsApp.</span></div>
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" hidden></p>
+          <button class="btn btn-leaf" type="submit">Submit claim</button>
+        </form>
+      </div>
+      <div class="panel" id="trackPanel">
+        <h3>Track a claim</h3>
+        <p class="sub">Enter your claim reference and the phone number you used.</p>
+        <form class="grid" id="trackForm" novalidate>
+          <div class="row2">
+            <div class="f"><label for="tRef">Claim reference</label><input class="inp" id="tRef" required placeholder="YG-C-…" style="font-family:var(--mono);text-transform:uppercase"></div>
+            <div class="f"><label for="tPhone">Phone number</label><input class="inp" id="tPhone" required inputmode="tel"></div>
+          </div>
+          <p class="err" hidden></p>
+          <button class="btn btn-ghost" type="submit">Check status</button>
+        </form>
+        <p class="hint" id="trackDemo" hidden>Example to try: <b style="font-family:var(--mono)">YG-C-DEMO01</b> with phone <b style="font-family:var(--mono)">08030000000</b>.</p>
+        <div class="track-res" id="trackRes" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="renewals">
+  <div class="wrap split">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">Renewals</p>
+      <h2>Never drive on an expired policy.</h2>
+      <p class="lede">Most covers run for 12 months, and a lapsed policy means an unpaid claim. Tell us when yours expires, wherever you bought it, and we'll remind you with fresh quotes before the date.</p>
+    </div>
+    <div class="panel">
+      <h3>Set a renewal reminder</h3>
+      <form class="grid" id="renewForm" data-kind="renewal" novalidate>
+        <div class="row2">
+          <div class="f"><label for="rName">Name</label><input class="inp" id="rName" name="name" required></div>
+          <div class="f"><label for="rPhone">Phone / WhatsApp</label><input class="inp" id="rPhone" name="phone" required inputmode="tel"></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label for="rCover">Cover</label><select class="inp" id="rCover" name="product"></select></div>
+          <div class="f"><label for="rExpiry">Expiry date</label><input class="inp" id="rExpiry" name="expiry" type="date" required></div>
+        </div>
+        <div class="f"><label for="rInsurer">Current insurer (optional)</label><input class="inp" id="rInsurer" name="insurer"></div>
+        <div class="countdown" id="rCount" hidden><span class="big" id="rDays"></span><span id="rDaysTxt"></span></div>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" hidden></p>
+        <button class="btn btn-leaf" type="submit">Remind me</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec biz" id="business">
+  <div class="wrap biz-grid">
+    <div>
+      <p class="eyebrow">For businesses and insurers</p>
+      <h2 style="margin-top:12px">Corporate risk, placed properly.</h2>
+      <p class="lede" style="margin-top:14px">Factories, estates, schools, logistics firms and professional practices use us to structure their insurance programme and keep it compliant. We also place reinsurance for insurance companies, locally and internationally.</p>
+      <div class="biz-list">
+        <div><b>Group Life Assurance</b><span>Pension Reform Act 2014 requires at least 3× annual emoluments</span></div>
+        <div><b>Industrial All Risk</b><span>Plant, stock and buildings under one policy</span></div>
+        <div><b>Fire &amp; Special Perils</b><span>Fire, flood, storm, riot, impact</span></div>
+        <div><b>Goods in Transit &amp; Marine Cargo</b><span>Road, sea and air</span></div>
+        <div><b>Professional Indemnity</b><span>For consultants, engineers, lawyers, doctors</span></div>
+        <div><b>Reinsurance broking</b><span>Treaty and facultative placement</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Book a free risk review</h3>
+      <p class="sub">We'll look at your current policies, flag gaps and overpayments, and send a written summary.</p>
+      <form class="grid" id="reviewForm" data-kind="review" novalidate>
+        <div class="row2">
+          <div class="f"><label for="vCompany">Company</label><input class="inp" id="vCompany" name="company" required></div>
+          <div class="f"><label for="vName">Contact person</label><input class="inp" id="vName" name="name" required></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label for="vPhone">Phone</label><input class="inp" id="vPhone" name="phone" required inputmode="tel"></div>
+          <div class="f"><label for="vEmail">Email</label><input class="inp" id="vEmail" name="email" type="email"></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label for="vSector">Industry</label><select class="inp" id="vSector" name="sector"><option>Manufacturing</option><option>Real estate &amp; construction</option><option>Oil &amp; gas / energy</option><option>Logistics &amp; haulage</option><option>Schools &amp; education</option><option>Healthcare</option><option>Professional services</option><option>Retail &amp; FMCG</option><option>Insurance company (reinsurance)</option><option>Other</option></select></div>
+          <div class="f"><label for="vStaff">Number of staff</label><input class="inp" id="vStaff" name="staff" inputmode="numeric"></div>
+        </div>
+        <div class="f"><label for="vNotes">What would you like reviewed?</label><textarea class="inp" id="vNotes" name="details" rows="3" placeholder="E.g. renewal of group life and fire policies in March"></textarea></div>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" hidden></p>
+        <button class="btn btn-primary" type="submit">Book my review</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div class="sec-head" style="margin:0">
+      <p class="eyebrow">About Yadah-G</p>
+      <h2>A Nigerian broker, on your side of the table, for over 20 years.</h2>
+      <p class="lede">Yadah-G Global Insurance Brokers is a 100% indigenous firm, incorporated in 2004 to practise as an insurance broker and consultant. Our job is simple: understand your risk, find the right insurer for it, and make sure you're paid when you claim.</p>
+    </div>
+    <dl class="ledger">
+      <div><dt>Incorporated</dt><dd>24 February 2004, Corporate Affairs Commission</dd></div>
+      <div><dt>Regulator</dt><dd>Licensed by the National Insurance Commission (NAICOM)</dd></div>
+      <div><dt>Licence scope</dt><dd>General business, life business and reinsurance broking</dd></div>
+      <div><dt>Membership</dt><dd>Nigerian Council of Registered Insurance Brokers (NCRIB)</dd></div>
+      <div><dt>Office</dt><dd>Plot 13, Port Harcourt, Cowrie Creek Estate, Ikate Elegushi, Lekki, Lagos</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec steps-sec" style="padding-block:clamp(48px,7vw,80px)">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Questions</p><h2>Before you ask</h2></div>
+    <div class="faq">
+      <details><summary>Does it cost more to buy through a broker?</summary><p>No. Insurers pay brokers a commission out of the premium, so you pay the same, and often less, because we compare several insurers before you commit.</p></details>
+      <details><summary>Who do I pay my premium to?</summary><p>You pay the insurer directly into its account, and you receive the policy document in the insurer's name. We never ask you to pay a premium into a personal account.</p></details>
+      <details><summary>Is third-party motor insurance enough?</summary><p>It's the legal minimum, and it pays for damage you cause to other people and their property. It does not repair or replace your own car. Comprehensive cover does.</p></details>
+      <details><summary>My policy is with another broker or insurer. Can you still help?</summary><p>Yes. Send us the schedule before renewal and we'll check whether you're properly covered and fairly priced. You can move your business to us at renewal.</p></details>
+      <details><summary>How fast are claims paid?</summary><p>It depends on the insurer and how complete the documents are. We collect what's needed, submit it, and follow up until the claim is settled, and you can see each stage with your claim reference.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="sec-head"><p class="eyebrow">Contact</p><h2>Talk to a broker</h2><p class="lede">Weekdays, 8am to 5pm. WhatsApp messages are answered the same working day.</p></div>
+      <dl style="margin:0">
+        <div class="cline"><dt>Phone</dt><dd><a href="tel:+2348023216201" class="phone-text">+234 802 321 6201</a><button class="copy" data-copy="+2348023216201">Copy</button></dd></div>
+        <div class="cline"><dt>WhatsApp</dt><dd><a href="#" class="wa-link" target="_blank" rel="noopener">Start a chat</a></dd></div>
+        <div class="cline"><dt>Email</dt><dd><span>info@yadahg.com</span><button class="copy" data-copy="info@yadahg.com">Copy</button></dd></div>
+        <div class="cline"><dt>Office</dt><dd>Plot 13, Port Harcourt, Cowrie Creek Estate, Ikate Elegushi, Lekki, Lagos</dd></div>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3>Request a call back</h3>
+      <p class="sub">Leave your number and a broker will call you.</p>
+      <form class="grid" id="cbForm" data-kind="callback" novalidate>
+        <div class="row2">
+          <div class="f"><label for="bName">Name</label><input class="inp" id="bName" name="name" required></div>
+          <div class="f"><label for="bPhone">Phone</label><input class="inp" id="bPhone" name="phone" required inputmode="tel"></div>
+        </div>
+        <div class="f"><label for="bTime">Best time to call</label><select class="inp" id="bTime" name="time"><option>Morning (8am to 12pm)</option><option>Afternoon (12pm to 5pm)</option><option>Any time</option></select></div>
+        <div class="f"><label for="bTopic">What's it about?</label><input class="inp" id="bTopic" name="details" placeholder="E.g. health insurance for my family"></div>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" hidden></p>
+        <button class="btn btn-leaf" type="submit">Call me back</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="brand" style="padding:6px 12px"><img src="assets/logo.png" alt="YGGIB Insurance Brokers" width="154" height="56" style="height:44px"></span><span style="color:var(--on-band);font:700 1.05rem var(--display)">Yadah-G Global Insurance Brokers</span></span>
+      <span><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://x.com/" target="_blank" rel="noopener">X</a></span>
+    </div>
+    <p class="reg">Licensed by the National Insurance Commission (NAICOM) as an insurance broker · Member, Nigerian Council of Registered Insurance Brokers · RC registered with CAC, 2004</p>
+    <p>Premium estimates on this site are indicative and are not an offer of insurance. Cover starts only when an insurer accepts the risk and the premium is paid. © <span id="yr"></span> Yadah-G Global Insurance Brokers. <a href="#admin">Staff login</a></p>
+  </div>
+</footer>
+
+<a class="wa-float wa-link" href="#" target="_blank" rel="noopener" aria-label="Chat with Yadah-G on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+</div>
+
+<div id="admin" hidden>
+  <div class="adm-top"><div class="wrap"><b style="font:800 1.1rem var(--display)">Yadah-G · Staff desk</b><span class="live" id="admMode">Preview</span><a href="#top" class="btn btn-ghost btn-sm" style="color:var(--on-band)">View site</a></div></div>
+  <div class="adm-login" id="admLogin">
+    <div class="panel">
+      <h3>Sign in</h3>
+      <p class="sub" id="admLoginSub">Enter the staff password.</p>
+      <form class="grid" id="admLoginForm"><div class="f"><label for="admPw">Password</label><input class="inp" id="admPw" type="password" autocomplete="current-password" required></div><p class="err" hidden></p><button class="btn btn-leaf" type="submit">Sign in</button></form>
+    </div>
+  </div>
+  <div class="wrap adm-body" id="admApp" hidden>
+    <nav class="adm-nav" id="admNav"></nav>
+    <main id="admMain" style="min-width:0"></main>
+  </div>
+</div>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const PHONE="2348023216201";
+const naira=n=>"₦"+Math.round(n).toLocaleString("en-NG");
+const num=v=>+(String(v).replace(/[^\d.]/g,""))||0;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const waURL=t=>"https://wa.me/"+PHONE+"?text="+encodeURIComponent(t);
+function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),2600)}
+
+/* ---------- Rates (editable in admin) ---------- */
+const DEFAULT_RATES={
+  motorLo:3, motorHi:5, motorTP:15000,
+  homeBLo:0.15, homeBHi:0.25, homeCLo:0.75, homeCHi:1.25,
+  fireLo:0.1, fireHi:0.3, iarLo:0.2, iarHi:0.5,
+  glifeLo:0.3, glifeHi:0.6,
+  hBasicLo:85000, hBasicHi:150000, hStdLo:150000, hStdHi:300000, hPremLo:300000, hPremHi:650000,
+  piLo:0.5, piHi:1.5, gitLo:0.15, gitHi:0.4, lifeBase:0.15, lifeAge:0.012
+};
+const RATE_LABELS={
+  motorLo:"Motor comprehensive, low (% of car value)", motorHi:"Motor comprehensive, high (%)", motorTP:"Third-party motor, private car (₦)",
+  homeBLo:"Home: building, low (%)", homeBHi:"Home: building, high (%)", homeCLo:"Home: contents, low (%)", homeCHi:"Home: contents, high (%)",
+  fireLo:"Fire & special perils, low (%)", fireHi:"Fire & special perils, high (%)", iarLo:"Industrial all risk, low (%)", iarHi:"Industrial all risk, high (%)",
+  glifeLo:"Group life, low (% of sum assured)", glifeHi:"Group life, high (%)",
+  hBasicLo:"Health basic, low (₦/person)", hBasicHi:"Health basic, high (₦/person)", hStdLo:"Health standard, low (₦)", hStdHi:"Health standard, high (₦)", hPremLo:"Health premium, low (₦)", hPremHi:"Health premium, high (₦)",
+  piLo:"Professional indemnity, low (% of limit)", piHi:"Professional indemnity, high (%)", gitLo:"Goods in transit, low (% of annual carry)", gitHi:"Goods in transit, high (%)",
+  lifeBase:"Individual life base rate (% at age 25)", lifeAge:"Individual life: extra % per year over 25"
+};
+let R={...DEFAULT_RATES};
+
+/* ---------- Covers ---------- */
+const I={
+ car:'<path d="M5 16h14M6.5 16v2M17.5 16v2M4 13l1.8-5A2 2 0 0 1 7.7 6.6h8.6a2 2 0 0 1 1.9 1.4L20 13v3H4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="8" cy="13" r="1" fill="currentColor"/><circle cx="16" cy="13" r="1" fill="currentColor"/>',
+ home:'<path d="M4 11l8-6 8 6v9H4z M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z M8 11h2l1-2 2 4 1-2h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ people:'<circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="9" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M14.5 15a4.5 4.5 0 0 1 6 4" fill="none" stroke="currentColor" stroke-width="1.7"/>',
+ factory:'<path d="M3 20V10l5 3V10l5 3V6h3l1 4h4v10z M7 17h2M12 17h2M17 17h1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ flame:'<path d="M12 21a6 6 0 0 0 6-6c0-4-3-5-3-9-2 1-3 3-3 5-1-1-1.5-2-1.5-3C8 10 6 12 6 15a6 6 0 0 0 6 6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="17.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/>',
+ brief:'<path d="M4 8h16v11H4zM9 8V5h6v3M4 13h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ shield:'<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+ globe:'<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17" fill="none" stroke="currentColor" stroke-width="1.5"/>'
+};
+const P=[
+ {id:"motor",group:"you",name:"Motor insurance",short:"Motor",ic:"car",desc:"Comprehensive or third-party cover for private and commercial vehicles.",
+  fields:[{k:"value",l:"Vehicle value",m:1,d:18000000},{k:"cover",l:"Cover type",o:["Comprehensive","Third party only"]},{k:"use",l:"Use",o:["Private","Commercial"]}],
+  calc:v=>v.cover==="Third party only"?(v.use==="Private"?{fixed:R.motorTP,s:"Fixed minimum premium for a private car, set by NAICOM."}:{ask:"Commercial third-party rates depend on the vehicle class. We'll confirm."}):{lo:v.value*R.motorLo/100,hi:v.value*R.motorHi/100,s:"Covers your own car plus third parties. Excess and tracker terms vary by insurer."}},
+ {id:"home",group:"you",name:"Home insurance",short:"Home",ic:"home",desc:"Your building and what's inside it, against fire, flood, burglary and more.",
+  fields:[{k:"building",l:"Rebuilding cost of the house",m:1,d:60000000},{k:"contents",l:"Value of contents",m:1,d:8000000}],
+  calc:v=>({lo:v.building*R.homeBLo/100+v.contents*R.homeCLo/100,hi:v.building*R.homeBHi/100+v.contents*R.homeCHi/100,s:"Householder policy: building plus contents."})},
+ {id:"health",group:"you",name:"Health insurance",short:"Health",ic:"heart",desc:"HMO plans for you, your family or your staff, from basic to premium.",
+  fields:[{k:"people",l:"Number of people",d:4,n:1},{k:"plan",l:"Plan level",o:["Basic","Standard","Premium"]}],
+  calc:v=>{const t={Basic:["hBasicLo","hBasicHi"],Standard:["hStdLo","hStdHi"],Premium:["hPremLo","hPremHi"]}[v.plan];const p=Math.max(1,v.people);return{lo:p*R[t[0]],hi:p*R[t[1]],s:`${p} ${p===1?"person":"people"}, ${v.plan.toLowerCase()} plan, per year.`}}},
+ {id:"life",group:"you",name:"Life insurance",short:"Life",ic:"shield",desc:"Term life and savings plans that look after your family if you're not there.",
+  fields:[{k:"age",l:"Your age",d:35,n:1},{k:"sum",l:"Sum assured",m:1,d:20000000}],
+  calc:v=>{const r=(R.lifeBase+Math.max(0,v.age-25)*R.lifeAge)/100;return{lo:v.sum*r*.8,hi:v.sum*r*1.25,s:"Term life, non-smoker. Medicals may be needed for larger sums."}}},
+ {id:"glife",group:"biz",name:"Group life assurance",short:"Group life",ic:"people",tag:"Required by law",desc:"Statutory cover paying staff families at least 3× annual emoluments on death.",
+  fields:[{k:"staff",l:"Number of staff",d:40,n:1},{k:"salary",l:"Average annual pay per staff",m:1,d:4800000},{k:"mult",l:"Benefit multiple (× annual pay)",d:3,n:1}],
+  calc:v=>{const sa=v.staff*v.salary*Math.max(3,v.mult);return{lo:sa*R.glifeLo/100,hi:sa*R.glifeHi/100,s:`Total sum assured ${naira(sa)}.${v.mult<3?" Raised to the legal minimum of 3×.":""}`}}},
+ {id:"iar",group:"biz",name:"Industrial all risk",short:"Industrial all risk",ic:"factory",desc:"One policy for a factory's buildings, plant, machinery and stock.",
+  fields:[{k:"si",l:"Total sum insured",m:1,d:1500000000}],
+  calc:v=>({lo:v.si*R.iarLo/100,hi:v.si*R.iarHi/100,s:"Rate depends on the industry, fire protection and claims history."})},
+ {id:"fire",group:"biz",name:"Fire & special perils",short:"Fire",ic:"flame",desc:"Commercial buildings and stock against fire, flood, storm and riot.",
+  fields:[{k:"si",l:"Sum insured",m:1,d:250000000}],
+  calc:v=>({lo:v.si*R.fireLo/100,hi:v.si*R.fireHi/100,s:"Special perils can be added or removed to suit the premises."})},
+ {id:"git",group:"biz",name:"Goods in transit & marine",short:"Goods in transit",ic:"truck",desc:"Cargo by road, sea or air, single trip or annual cover.",
+  fields:[{k:"carry",l:"Value of goods moved per year",m:1,d:500000000}],
+  calc:v=>({lo:v.carry*R.gitLo/100,hi:v.carry*R.gitHi/100,s:"Annual declaration policy. Single-trip marine is priced per shipment."})},
+ {id:"pi",group:"biz",name:"Professional indemnity",short:"Prof. indemnity",ic:"brief",desc:"Protects consultants and professionals against claims of negligence.",
+  fields:[{k:"limit",l:"Limit of indemnity",m:1,d:100000000}],
+  calc:v=>({lo:v.limit*R.piLo/100,hi:v.limit*R.piHi/100,s:"Depends on profession, fee income and claims history."})},
+ {id:"re",group:"biz",name:"Reinsurance placement",short:"Reinsurance",ic:"globe",desc:"Treaty and facultative placement for insurers, with local and international markets.",fields:[],calc:()=>({ask:"Tell us about the risk or treaty and we'll go to market."}),noEst:1}
+];
+const byId=id=>P.find(p=>p.id===id);
+
+/* ---------- Data layer: Cloudflare API, or browser-only preview ---------- */
+const API={live:false};
+const LS="yadahg-preview-v1";
+const lsGet=()=>{try{return JSON.parse(localStorage.getItem(LS))||null}catch{return null}};
+const lsSet=d=>{try{localStorage.setItem(LS,JSON.stringify(d))}catch{}};
+let mem=lsGet()||{items:[],rates:null};
+function seed(){
+  if(mem.items.some(i=>i.ref==="YG-C-DEMO01"))return;
+  const d=n=>new Date(Date.now()-n*864e5).toISOString();
+  mem.items.push(
+   {kind:"claim",ref:"YG-C-DEMO01",example:true,created:d(9),name:"Example: Adaeze Okafor",phone:"08030000000",policy:"MTR/LAG/24/00871",claimType:"Motor accident / damage",incidentDate:d(10).slice(0,10),description:"Rear-ended at Lekki toll gate. Bumper and boot lid damaged. Police report obtained.",status:"With insurer",history:[{s:"Received",at:d(9)},{s:"Documents review",at:d(8),note:"Photos and police report received."},{s:"With insurer",at:d(5),note:"Submitted to insurer. Loss adjuster inspecting Thursday."}]},
+   {kind:"quote",ref:"YG-Q-DEMO02",example:true,created:d(1),name:"Example: Tunde Bakare",phone:"08120000000",product:"Motor insurance",details:"2021 Toyota Camry, private use. Estimate ₦540,000 – ₦900,000.",contactVia:"WhatsApp",status:"New"},
+   {kind:"renewal",ref:"YG-R-DEMO03",example:true,created:d(20),name:"Example: Bright Path Schools",phone:"08090000000",product:"Group life assurance",expiry:new Date(Date.now()+12*864e5).toISOString().slice(0,10),insurer:"Current insurer",status:"New"});
+  lsSet(mem);
+}
+async function init(){
+  try{const r=await fetch("/api/health",{cache:"no-store"});if(r.ok){const j=await r.json();API.live=j&&j.ok===true}}catch{}
+  if(API.live){try{const r=await fetch("/api/config");if(r.ok){const j=await r.json();if(j.rates)R={...DEFAULT_RATES,...j.rates}}}catch{}}
+  else{seed();if(mem.rates)R={...DEFAULT_RATES,...mem.rates};$("#previewBar").hidden=false;$("#trackDemo").hidden=false}
+}
+const mkRef=k=>{const t=new Date(),p=n=>String(n).padStart(2,"0");return`YG-${k}-${String(t.getFullYear()).slice(2)}${p(t.getMonth()+1)}${p(t.getDate())}-${Math.random().toString(36).slice(2,6).toUpperCase()}`};
+const KIND_LETTER={quote:"Q",claim:"C",renewal:"R",review:"V",callback:"B"};
+async function submit(kind,data){
+  if(API.live){const r=await fetch("/api/submit",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({kind,...data})});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"We couldn't send that. Please try again or WhatsApp us.");return j}
+  const item={kind,ref:mkRef(KIND_LETTER[kind]),created:new Date().toISOString(),status:kind==="claim"?"Received":"New",...data};
+  if(kind==="claim")item.history=[{s:"Received",at:item.created}];
+  mem.items.unshift(item);lsSet(mem);return{ref:item.ref};
+}
+async function uploadFiles(ref,files){
+  if(!API.live||!files.length)return 0;let n=0;
+  for(const f of [...files].slice(0,4)){if(f.size>8e6)continue;
+    const r=await fetch(`/api/upload?ref=${encodeURIComponent(ref)}&name=${encodeURIComponent(f.name)}`,{method:"POST",headers:{"content-type":f.type||"application/octet-stream"},body:f});if(r.ok)n++}
+  return n;
+}
+const digits=s=>String(s||"").replace(/\D/g,"").slice(-10);
+async function track(ref,phone){
+  ref=ref.trim().toUpperCase();
+  if(API.live){const r=await fetch(`/api/track?ref=${encodeURIComponent(ref)}&phone=${encodeURIComponent(phone)}`);const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"We couldn't find that claim.");return j.claim}
+  const c=mem.items.find(i=>i.kind==="claim"&&i.ref===ref);
+  if(!c||digits(c.phone)!==digits(phone))throw new Error("No claim matches that reference and phone number. Check both and try again.");
+  return c;
+}
+
+/* ---------- Quote estimator ---------- */
+let cur="motor";const vals={};
+function renderTabs(){
+  $("#qTabs").innerHTML=P.filter(p=>!p.noEst).map(p=>`<button class="tab" role="tab" aria-selected="${p.id===cur}" data-id="${p.id}">${p.short}</button>`).join("");
+}
+function renderFields(){
+  const p=byId(cur);vals[cur]=vals[cur]||{};
+  const v=vals[cur];
+  const html=p.fields.map(f=>{
+    const id="qf-"+cur+"-"+f.k;
+    if(f.o){v[f.k]=v[f.k]||f.o[0];return`<div class="f"><label for="${id}">${f.l}</label><select class="inp" id="${id}" data-k="${f.k}">${f.o.map(o=>`<option${o===v[f.k]?" selected":""}>${o}</option>`).join("")}</select></div>`}
+    if(v[f.k]==null)v[f.k]=f.d;
+    if(f.m)return`<div class="f"><label for="${id}">${f.l}</label><div class="money"><input class="inp" id="${id}" data-k="${f.k}" data-m="1" inputmode="numeric" value="${Math.round(v[f.k]).toLocaleString("en-NG")}"></div></div>`;
+    return`<div class="f"><label for="${id}">${f.l}</label><input class="inp" id="${id}" data-k="${f.k}" inputmode="numeric" value="${v[f.k]}" style="font-family:var(--mono)"></div>`;
+  });
+  // pair short selects in rows
+  let out=[],buf=[];p.fields.forEach((f,i)=>{if(f.o||f.n){buf.push(html[i]);if(buf.length===2){out.push(`<div class="row2">${buf.join("")}</div>`);buf=[]}}else{if(buf.length){out.push(buf.join(""));buf=[]}out.push(html[i])}});
+  if(buf.length)out.push(buf.join(""));
+  $("#qFields").innerHTML=out.join("");
+  calc();
+}
+let lastEst="";
+function calc(){
+  const p=byId(cur),v=vals[cur],r=p.calc(v);
+  const tot=$("#qTotal"),s=$("#qTotalS");
+  if(r.fixed){tot.textContent=naira(r.fixed);lastEst=naira(r.fixed)}
+  else if(r.ask){tot.textContent="Quoted on request";lastEst=""}
+  else{tot.textContent=`${naira(r.lo)} – ${naira(r.hi)}`;lastEst=`${naira(r.lo)} – ${naira(r.hi)}`}
+  s.textContent=r.s||r.ask||"";
+  const t=new Date();$("#schNo").textContent=`YG/EST/${String(t.getFullYear()).slice(2)}/${cur.toUpperCase()}`;
+}
+function estimateSummary(){
+  const p=byId(cur),v=vals[cur]||{};
+  const parts=p.fields.map(f=>`${f.l}: ${f.m?naira(v[f.k]):v[f.k]}`);
+  return `${parts.join(", ")}.${lastEst?` Online estimate ${lastEst}.`:""}`;
+}
+$("#qTabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;cur=b.dataset.id;renderTabs();renderFields()});
+$("#qFields").addEventListener("input",e=>{const el=e.target;if(!el.dataset.k)return;
+  if(el.dataset.m){const pos=el.value.length-el.selectionStart;const n=num(el.value);vals[cur][el.dataset.k]=n;el.value=n?n.toLocaleString("en-NG"):"";try{el.setSelectionRange(el.value.length-pos,el.value.length-pos)}catch{}}
+  else if(el.tagName==="SELECT")vals[cur][el.dataset.k]=el.value;
+  else vals[cur][el.dataset.k]=num(el.value);
+  calc();});
+$("#qFields").addEventListener("change",e=>{const el=e.target;if(el.tagName==="SELECT"){vals[cur][el.dataset.k]=el.value;calc()}});
+function pickCover(id,scroll){const p=byId(id);
+  if(!p.noEst){cur=id;renderTabs();renderFields()}
+  $("#qProduct").value=p.name;$("#qDetails").value=p.noEst?"":estimateSummary();
+  if(scroll)document.getElementById(p.noEst?"quote":"top").scrollIntoView({behavior:"smooth"});
+}
+$("#qGo").addEventListener("click",()=>{$("#qProduct").value=byId(cur).name;$("#qDetails").value=estimateSummary()});
+$$("[data-focus-quote]").forEach(a=>a.addEventListener("click",()=>setTimeout(()=>$("#qTabs .tab[aria-selected=true]")?.focus(),400)));
+
+/* covers grid */
+$("#coverGroups").innerHTML=[["you","For you and your family"],["biz","For your business"]].map(([g,t])=>`<div class="cg"><h3>${t}</h3><div class="covers">${P.filter(p=>p.group===g).map(p=>`<article class="cover"><div class="ic"><svg viewBox="0 0 24 24">${I[p.ic]}</svg></div><div style="display:grid;gap:4px">${p.tag?`<span class="tag">${p.tag}</span>`:""}<h3>${p.name}</h3></div><p>${p.desc}</p><button class="link" data-pick="${p.id}">${p.noEst?"Talk to us":"See my estimate"} →</button></article>`).join("")}</div></div>`).join("");
+$("#coverGroups").addEventListener("click",e=>{const b=e.target.closest("[data-pick]");if(b)pickCover(b.dataset.pick,true)});
+const opts=P.map(p=>`<option>${p.name}</option>`).join("")+"<option>Something else</option>";
+$("#qProduct").innerHTML=opts;$("#rCover").innerHTML=opts;
+
+/* chips */
+$$(".chipset").forEach(cs=>cs.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;$$(".chip",cs).forEach(c=>c.setAttribute("aria-pressed",c===b));}));
+
+/* ---------- Forms ---------- */
+const validPhone=p=>digits(p).length>=10;
+function formData(f){const o={};$$("input[name],select[name],textarea[name]",f).forEach(el=>o[el.name]=el.value.trim());$$(".chipset",f).forEach(cs=>o[cs.dataset.chip]=$(".chip[aria-pressed=true]",cs)?.textContent);return o}
+const DONE={
+ quote:(ref,d)=>({t:"Quote request sent",m:"A broker will contact you with options from several insurers.",wa:`Hello Yadah-G, I just sent a quote request (${ref}) for ${d.product}.`}),
+ claim:(ref,d)=>({t:"Claim reported",m:"Keep this reference. You can track the claim here, and send any extra documents on WhatsApp.",wa:`Hello Yadah-G, I reported a claim (${ref}). I'm sending supporting documents.`}),
+ renewal:(ref,d)=>({t:"Reminder set",m:`We'll contact you before your ${d.product.toLowerCase()} expires on ${new Date(d.expiry).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}, with renewal quotes.`,wa:`Hello Yadah-G, I set a renewal reminder (${ref}) for my ${d.product}.`}),
+ review:(ref,d)=>({t:"Review booked",m:"We'll call to agree a date and the documents to send ahead.",wa:`Hello Yadah-G, I booked a risk review (${ref}) for ${d.company}.`}),
+ callback:(ref,d)=>({t:"We'll call you",m:`Expect a call ${d.time.split(" (")[0].toLowerCase()==="any time"?"soon":"in the "+d.time.split(" (")[0].toLowerCase()}.`,wa:`Hello Yadah-G, I asked for a call back (${ref}).`})
+};
+$$("form[data-kind]").forEach(f=>f.addEventListener("submit",async e=>{
+  e.preventDefault();const kind=f.dataset.kind,err=$(".err",f),btn=$("button[type=submit]",f);
+  err.hidden=true;const d=formData(f);
+  if(d.website)return;delete d.website;
+  const missing=$$("[required]",f).find(el=>!el.value.trim());
+  if(missing){err.textContent=`Please fill in "${$(`label[for=${missing.id}]`,f)?.textContent||"the required field"}".`;err.hidden=false;missing.focus();return}
+  if(!validPhone(d.phone)){err.textContent="Please enter a phone number with at least 10 digits.";err.hidden=false;return}
+  btn.disabled=true;const old=btn.textContent;btn.textContent="Sending…";
+  try{
+    const {ref}=await submit(kind,d);
+    let up=0;if(kind==="claim")up=await uploadFiles(ref,$("#cFiles").files);
+    const m=DONE[kind](ref,d);
+    const box=document.createElement("div");box.className="done";box.setAttribute("role","status");
+    box.innerHTML=`<b>${m.t}</b><span class="ref">${ref}</span><span>${m.m}${up?` ${up} file${up>1?"s":""} uploaded.`:""}</span><div class="done-actions"><a class="btn btn-leaf btn-sm" href="${waURL(m.wa)}" target="_blank" rel="noopener">Also send on WhatsApp</a><button class="btn btn-ghost btn-sm" type="button" data-again>Send another</button></div>`;
+    f.hidden=true;f.after(box);
+    $("[data-again]",box).onclick=()=>{box.remove();f.reset();f.hidden=false;$("#rCount")&&kind==="renewal"&&($("#rCount").hidden=true)};
+    if(kind==="claim"){$("#tRef").value=ref;$("#tPhone").value=d.phone}
+  }catch(x){err.textContent=x.message;err.hidden=false}
+  finally{btn.disabled=false;btn.textContent=old}
+}));
+
+/* renewal countdown */
+$("#rExpiry").addEventListener("input",e=>{const v=e.target.value;const box=$("#rCount");if(!v){box.hidden=true;return}
+  const days=Math.ceil((new Date(v+"T00:00:00")-new Date(new Date().toDateString()))/864e5);box.hidden=false;
+  $("#rDays").textContent=Math.abs(days);
+  $("#rDaysTxt").innerHTML=days<0?`days since it expired <span class="pill bad">Lapsed. Renew now</span>`:days<=30?`days to go <span class="pill warn">Renewal window open</span>`:`days to go <span class="pill">Covered</span>`;});
+
+/* tracker */
+const STAGES=["Received","Documents review","With insurer","Offer made","Settled"];
+const fmtD=s=>new Date(s).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+$("#trackForm").addEventListener("submit",async e=>{e.preventDefault();const err=$(".err",e.target),res=$("#trackRes");err.hidden=true;
+  try{const c=await track($("#tRef").value,$("#tPhone").value);
+    const idx=c.status==="Declined"?-1:STAGES.indexOf(c.status);
+    const h=c.history||[];
+    res.innerHTML=`<div class="kv"><span>Reference</span><b>${esc(c.ref)}</b><span>Type</span><b>${esc(c.claimType)}</b><span>Reported</span><b>${fmtD(c.created)}</b></div>
+      ${c.status==="Declined"?`<p><span class="pill bad">Declined</span> ${esc((h[h.length-1]||{}).note||"Please call us to discuss the insurer's decision.")}</p>`:
+      `<ol class="timeline">${STAGES.map((s,i)=>{const ev=[...h].reverse().find(x=>x.s===s);return`<li class="${i<=idx?"on":""} ${i===idx?"now":""}"><span class="dot">${i<=idx?"✓":""}</span><div><div class="t">${s}</div>${ev?`<div class="d">${fmtD(ev.at)}${ev.note?" · "+esc(ev.note):""}</div>`:""}</div></li>`}).join("")}</ol>`}`;
+    res.hidden=false;
+  }catch(x){err.textContent=x.message;err.hidden=false;res.hidden=true}});
+
+/* misc */
+$$(".wa-link").forEach(a=>a.href=waURL("Hello Yadah-G, I'd like to speak to a broker."));
+$("#heroWa").href=waURL("Hello Yadah-G, I'd like an insurance quote.");
+$$(".copy").forEach(b=>b.addEventListener("click",()=>{const t=b.dataset.copy;(navigator.clipboard?.writeText(t)||Promise.reject()).then(()=>toast("Copied")).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selected. Copy it from here")})}));
+$("#menuBtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#menuBtn").setAttribute("aria-expanded",o)});
+$("#nav").addEventListener("click",e=>{if(e.target.closest("a")){$("#nav").classList.remove("open");$("#menuBtn").setAttribute("aria-expanded","false")}});
+$("#yr").textContent=new Date().getFullYear();
+$("#cDate").max=new Date().toISOString().slice(0,10);
+
+/* ---------- Admin ---------- */
+let PW="",admTab="quote",admItems=[];
+const TABS=[["quote","Quote requests"],["claim","Claims"],["renewal","Renewals"],["review","Risk reviews"],["callback","Call backs"],["rates","Estimate rates"]];
+const ST={quote:["New","Contacted","Quoted","Won","Lost"],review:["New","Scheduled","Done"],callback:["New","Called","No answer"],renewal:["New","Reminded","Renewed","Lost"],claim:[...STAGES,"Declined"]};
+async function admFetch(path,opt={}){const r=await fetch(path,{...opt,headers:{"content-type":"application/json",authorization:"Bearer "+PW,...(opt.headers||{})}});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Request failed");return j}
+async function admLoad(){
+  if(API.live){admItems=(await admFetch("/api/admin/items")).items}else{mem=lsGet()||mem;admItems=mem.items}
+  admRender();
+}
+function daysTo(d){return Math.ceil((new Date(d+"T00:00:00")-new Date(new Date().toDateString()))/864e5)}
+function admRender(){
+  const c=k=>admItems.filter(i=>i.kind===k).length;
+  $("#admNav").innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" aria-current="${k===admTab}"><span>${l}</span>${k!=="rates"?`<span class="cnt">${c(k)}</span>`:""}</button>`).join("");
+  const main=$("#admMain");
+  const open=admItems.filter(i=>(i.kind==="quote"&&i.status==="New")).length;
+  const activeClaims=admItems.filter(i=>i.kind==="claim"&&!["Settled","Declined"].includes(i.status)).length;
+  const due=admItems.filter(i=>i.kind==="renewal"&&i.status!=="Renewed"&&daysTo(i.expiry)<=30).length;
+  const cb=admItems.filter(i=>i.kind==="callback"&&i.status==="New").length;
+  let html=`<div class="stats"><div class="stat"><div class="k">New quote requests</div><div class="v">${open}</div></div><div class="stat"><div class="k">Open claims</div><div class="v">${activeClaims}</div></div><div class="stat"><div class="k">Renewals due ≤30 days</div><div class="v">${due}</div></div><div class="stat"><div class="k">Calls to return</div><div class="v">${cb}</div></div></div>`;
+  if(admTab==="rates"){
+    html+=`<div class="panel"><h3>Estimate rates</h3><p class="sub">These drive the premium estimator on the website. Percentages are of the value entered.</p><form id="rateForm" class="grid"><div class="rates">${Object.keys(DEFAULT_RATES).map(k=>`<div class="f"><label for="rt-${k}">${RATE_LABELS[k]}</label><input class="inp" id="rt-${k}" data-k="${k}" inputmode="decimal" value="${R[k]}" style="font-family:var(--mono)"></div>`).join("")}</div><div class="item-act"><button class="btn btn-leaf" type="submit">Save rates</button><button class="btn btn-ghost" type="button" id="rateReset">Restore defaults</button></div></form></div>`;
+    main.innerHTML=html;
+    $("#rateForm").onsubmit=async e=>{e.preventDefault();const nr={};$$("#rateForm [data-k]").forEach(i=>nr[i.dataset.k]=parseFloat(i.value)||0);await saveRates(nr)};
+    $("#rateReset").onclick=()=>saveRates({...DEFAULT_RATES});
+    return;
+  }
+  let list=admItems.filter(i=>i.kind===admTab);
+  if(admTab==="renewal")list.sort((a,b)=>a.expiry.localeCompare(b.expiry));
+  html+=`<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px"><h3>${TABS.find(t=>t[0]===admTab)[1]}</h3><button class="btn btn-ghost btn-sm" id="csvBtn">Copy as CSV</button></div>`;
+  html+=list.length?`<div class="items">${list.map(itemHTML).join("")}</div>`:`<div class="empty">Nothing here yet. New ${TABS.find(t=>t[0]===admTab)[1].toLowerCase()} from the website appear here.</div>`;
+  main.innerHTML=html;
+  $("#csvBtn").onclick=()=>{const keys=[...new Set(list.flatMap(o=>Object.keys(o).filter(k=>!["history","files","kind"].includes(k))))];const csv=[keys.join(","),...list.map(o=>keys.map(k=>`"${String(o[k]??"").replace(/"/g,'""')}"`).join(","))].join("\n");navigator.clipboard?.writeText(csv).then(()=>toast("CSV copied")).catch(()=>toast("Copy isn't available here"))};
+}
+function itemHTML(i){
+  const skip=["kind","ref","created","status","history","name","phone","example","files","updated"];
+  const body=Object.entries(i).filter(([k,v])=>!skip.includes(k)&&v).map(([k,v])=>`${k.replace(/([A-Z])/g," $1").replace(/^./,c=>c.toUpperCase())}: ${v}`).join("\n");
+  let extra="";
+  if(i.kind==="renewal"){const d=daysTo(i.expiry);extra=`<span class="pill ${d<0?"bad":d<=30?"warn":""}">${d<0?`Lapsed ${-d}d ago`:`${d} days left`}</span>`}
+  const waMsg=i.kind==="renewal"?`Hello ${i.name}, this is Yadah-G Insurance Brokers. Your ${i.product} expires on ${fmtD(i.expiry)}. Shall we send you renewal quotes?`:i.kind==="claim"?`Hello ${i.name}, update on your claim ${i.ref}: status is now "${i.status}".`:`Hello ${i.name}, this is Yadah-G Insurance Brokers following up on your request ${i.ref}.`;
+  const files=(i.files||[]).map(f=>`<button class="copy" data-file="${esc(f)}">${esc(f.split("/").pop())}</button>`).join(" ");
+  return`<div class="item" data-ref="${esc(i.ref)}">
+    <div class="item-h"><span class="ref">${esc(i.ref)}</span><span class="who">${esc(i.name)}</span><span style="font-family:var(--mono);font-size:.88rem">${esc(i.phone)}</span>${extra}<span class="when">${fmtD(i.created)}</span></div>
+    <pre>${esc(body)}</pre>${files?`<div class="item-act"><span class="hint">Files:</span>${files}</div>`:""}
+    ${i.kind==="claim"&&i.history?`<div class="hint">${i.history.map(h=>`${fmtD(h.at)}: ${esc(h.s)}${h.note?" – "+esc(h.note):""}`).join(" · ")}</div>`:""}
+    <div class="item-act"><select class="inp" data-status>${ST[i.kind].map(s=>`<option${s===i.status?" selected":""}>${s}</option>`).join("")}</select>${i.kind==="claim"?`<input class="inp note" data-note placeholder="Note the customer will see (optional)">`:""}<button class="btn btn-leaf btn-sm" data-save>Save</button><a class="btn btn-ghost btn-sm" href="${waURL(waMsg).replace(PHONE,"234"+digits(i.phone).slice(-10))}" target="_blank" rel="noopener">WhatsApp</a></div></div>`;
+}
+async function saveRates(nr){
+  try{if(API.live)await admFetch("/api/admin/config",{method:"PUT",body:JSON.stringify({rates:nr})});else{mem.rates=nr;lsSet(mem)}
+    R={...DEFAULT_RATES,...nr};renderFields();toast("Rates saved");admRender()}catch(x){toast(x.message)}
+}
+$("#admNav").addEventListener("click",e=>{const b=e.target.closest("[data-t]");if(b){admTab=b.dataset.t;admRender()}});
+$("#admMain").addEventListener("click",async e=>{
+  const fb=e.target.closest("[data-file]");
+  if(fb){try{const r=await fetch("/api/admin/file?key="+encodeURIComponent(fb.dataset.file),{headers:{authorization:"Bearer "+PW}});if(!r.ok)throw 0;const u=URL.createObjectURL(await r.blob());const a=document.createElement("a");a.href=u;a.target="_blank";a.click()}catch{toast("Couldn't open that file")}return}
+  const b=e.target.closest("[data-save]");if(!b)return;
+  const card=b.closest(".item"),ref=card.dataset.ref,status=$("[data-status]",card).value,note=$("[data-note]",card)?.value.trim()||"";
+  try{
+    if(API.live)await admFetch("/api/admin/update",{method:"POST",body:JSON.stringify({ref,status,note})});
+    else{const it=mem.items.find(x=>x.ref===ref);if(it.kind==="claim"&&(status!==it.status||note))(it.history=it.history||[]).push({s:status,at:new Date().toISOString(),note});it.status=status;it.updated=new Date().toISOString();lsSet(mem)}
+    toast("Saved");await admLoad();
+  }catch(x){toast(x.message)}
+});
+$("#admLoginForm").addEventListener("submit",async e=>{e.preventDefault();const err=$(".err",e.target);err.hidden=true;PW=$("#admPw").value;
+  try{if(API.live)await admFetch("/api/admin/items");$("#admLogin").hidden=true;$("#admApp").hidden=false;await admLoad()}
+  catch(x){err.textContent="That password didn't work. Check it and try again.";err.hidden=false}});
+
+/* ---------- Routing ---------- */
+function route(){const adm=location.hash==="#admin";$("#site").hidden=adm;$("#admin").hidden=!adm;
+  if(adm){$("#admMode").textContent=API.live?"Live":"Preview";$("#admLoginSub").textContent=API.live?"Enter the staff password.":"Preview mode: any password works, and the data is example data in this browser.";window.scrollTo(0,0)}}
+addEventListener("hashchange",route);
+
+init().then(()=>{renderTabs();renderFields();route()});
+renderTabs();renderFields();
+})();
+</script>
