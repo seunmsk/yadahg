@@ -7,11 +7,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a deep-green "underwriting desk" band holds a live policy schedule; the rest of the page is a calm paper ledger of covers, claims and renewals. */
+/* Layout: a bright white-and-green "underwriting desk" band holds a live policy schedule; the rest of the page is a calm paper ledger of covers, claims and renewals. */
 :root{
-  --paper:#F4F7F2; --card:#FFFFFF; --ink:#12201A; --muted:#56675D; --line:#D7E0D8;
-  --leaf:#23803F; --leaf-ink:#FFFFFF; --leaf-soft:#E2F0E5;
-  --band:#0E3F2E; --band-2:#14533C; --on-band:#EAF3EC; --on-band-muted:#A9C7B4;
+  --paper:#F7FAF6; --card:#FFFFFF; --ink:#141A16; --muted:#55625A; --line:#DCE6DE;
+  --leaf:#17802A; --leaf-ink:#FFFFFF; --leaf-soft:#E5F3E7; --hero:#EDF7EE;
+  --brand:#17802A; --band:#17802A; --band-2:#126B22; --on-band:#FFFFFF; --on-band-muted:#D8EEDC;
   --seal:#B5822A; --seal-soft:#F6EBD5;
   --ok:#23803F; --warn:#B26B00; --bad:#B42318; --warn-soft:#FBEFD9; --bad-soft:#FBE4E1;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
@@ -19,26 +19,12 @@
   --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   --r:14px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0D1512; --card:#15201B; --ink:#E5EEE8; --muted:#9BAEA3; --line:#26352D;
-  --leaf:#4FBF71; --leaf-ink:#06140C; --leaf-soft:#1A3326;
-  --band:#0A261C; --band-2:#103425; --on-band:#E5F1E9; --on-band-muted:#93B4A0;
-  --seal:#D9A94A; --seal-soft:#332914;
-  --ok:#4FBF71; --warn:#E3A13B; --bad:#F07467; --warn-soft:#33270F; --bad-soft:#3A1A17;
-  color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0D1512; --card:#15201B; --ink:#E5EEE8; --muted:#9BAEA3; --line:#26352D;
-  --leaf:#4FBF71; --leaf-ink:#06140C; --leaf-soft:#1A3326;
-  --band:#0A261C; --band-2:#103425; --on-band:#E5F1E9; --on-band-muted:#93B4A0;
-  --seal:#D9A94A; --seal-soft:#332914;
-  --ok:#4FBF71; --warn:#E3A13B; --bad:#F07467; --warn-soft:#33270F; --bad-soft:#3A1A17;
-  color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--band)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--card)}
 a{color:inherit}
 h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
 h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:700}
@@ -55,7 +41,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s;white-space:nowrap}
 .btn:active{transform:scale(.98)}
-.btn-primary{background:var(--seal);color:#1B1305}
+.btn-primary{background:var(--leaf);color:#FFFFFF}
 .btn-primary:hover{filter:brightness(1.06)}
 .btn-leaf{background:var(--leaf);color:var(--leaf-ink)}
 .btn-ghost{background:transparent;border:1.5px solid currentColor}
@@ -63,42 +49,43 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wa-ico{width:18px;height:18px;flex:none}
 
 /* header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--band);color:var(--on-band);border-bottom:1px solid rgba(255,255,255,.08)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--card);color:var(--ink);border-bottom:1px solid var(--line);box-shadow:0 6px 20px -16px rgba(20,60,30,.35)}
 .top .wrap{display:flex;align-items:center;gap:20px;height:68px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
-.brand{background:#FFFFFF;border-radius:10px;padding:5px 10px;flex:none}
-.brand img{display:block;height:40px;width:auto}
+.brand{flex:none}
+.brand img{display:block;height:46px;width:auto}
 .nav{display:flex;gap:4px;margin-left:auto}
-.nav a{padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;color:var(--on-band)}
-.nav a:hover{background:rgba(255,255,255,.08)}
+.nav a{padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink)}
+.nav a:hover{background:var(--leaf-soft);color:var(--leaf)}
 .top-cta{display:flex;gap:8px;align-items:center}
-.menu-btn{display:none;background:none;border:1.5px solid rgba(255,255,255,.3);color:var(--on-band);border-radius:10px;padding:7px 12px;font-weight:600;cursor:pointer}
+.menu-btn{display:none;background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:10px;padding:7px 12px;font-weight:600;cursor:pointer}
 @media (max-width:980px){
   .nav{display:none}.menu-btn{display:inline-flex;margin-left:auto}
   .top-cta .btn-ghost{display:none}
-  .nav.open{display:grid;grid-template-columns:1fr 1fr;gap:4px;position:absolute;left:0;right:0;top:68px;background:var(--band-2);padding:12px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid rgba(255,255,255,.1)}
-  .nav.open a{font-size:.95rem;padding:10px 12px;background:rgba(255,255,255,.05)}
+  .nav.open{display:grid;grid-template-columns:1fr 1fr;gap:4px;position:absolute;left:0;right:0;top:68px;background:var(--card);box-shadow:0 14px 24px -18px rgba(20,60,30,.5);padding:12px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+  .nav.open a{font-size:.95rem;padding:10px 12px;background:var(--paper)}
 }
 @media (max-width:520px){.top-cta .btn-primary{display:none}}
 
 /* hero */
-.hero{background:var(--band);color:var(--on-band);position:relative;overflow:hidden}
+.hero{background:var(--hero);color:var(--ink);position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(600px 300px at 85% 0%,rgba(181,130,42,.18),transparent 70%),
-  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 96px)}
+  radial-gradient(640px 340px at 90% 10%,rgba(23,128,42,.14),transparent 70%),
+  radial-gradient(420px 260px at 0% 100%,rgba(255,255,255,.9),transparent 70%),
+  repeating-linear-gradient(90deg,rgba(23,128,42,.05) 0 1px,transparent 1px 96px)}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);padding-block:clamp(40px,6vw,76px) clamp(48px,7vw,88px);align-items:start}
 .hero h1{font-size:clamp(2.5rem,6.2vw,4.6rem);font-weight:800;letter-spacing:-.025em}
-.hero h1 em{font-style:normal;color:var(--seal)}
-.hero .lede{color:var(--on-band-muted);margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--leaf)}
+.hero .lede{color:var(--muted);margin-top:18px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.hero .btn-ghost{color:var(--on-band)}
+.hero .btn-ghost{color:var(--leaf);background:var(--card)}
 .creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
-.cred{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;font-size:.86rem;color:var(--on-band)}
-.cred b{font:500 .68rem/1 var(--mono);letter-spacing:.1em;color:var(--seal);text-transform:uppercase}
+.cred{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);background:var(--card);border-radius:10px;font-size:.86rem;color:var(--ink)}
+.cred b{font:500 .68rem/1 var(--mono);letter-spacing:.1em;color:var(--leaf);text-transform:uppercase}
 @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
 
 /* policy schedule (quote card) */
-.schedule{background:var(--card);color:var(--ink);border-radius:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);overflow:hidden;min-width:0}
+.schedule{background:var(--card);color:var(--ink);border-radius:18px;border:1px solid var(--line);box-shadow:0 28px 56px -30px rgba(20,70,35,.35);overflow:hidden;min-width:0}
 .sch-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px dashed var(--line);font:500 .72rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .sch-head .no{color:var(--seal)}
 .tabs{display:flex;gap:6px;padding:14px 20px 4px;overflow-x:auto;scrollbar-width:none}
@@ -186,7 +173,7 @@ form.grid{display:grid;gap:14px}
 /* business band */
 .biz{background:var(--band);color:var(--on-band)}
 .biz .lede{color:var(--on-band-muted)}
-.biz .eyebrow{color:var(--seal)}
+.biz .eyebrow{color:#FFFFFF}
 .biz-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,60px);align-items:start}
 @media (max-width:900px){.biz-grid{grid-template-columns:1fr}}
 .biz-list{display:grid;gap:0;margin-top:28px;border-top:1px solid rgba(255,255,255,.12)}
@@ -289,8 +276,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
 <section class="hero" id="top">
   <div class="wrap">
     <div>
-      <p class="eyebrow" style="color:var(--seal)">Licensed insurance broker · Lagos · Since 2004</p>
-      <h1 style="margin-top:16px">We shop the insurers. <em>You keep the cover.</em></h1>
+      <h1>We shop the insurers. <em>You keep the cover.</em></h1>
       <p class="lede">Yadah-G compares NAICOM-licensed insurers for your car, home, staff and business, places the policy, then stands beside you when you claim. Get an estimate in seconds below.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#quote">Get firm quotes</a>
@@ -558,7 +544,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
 <footer>
   <div class="wrap">
     <div class="frow">
-      <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="brand" style="padding:6px 12px"><img src="assets/logo.png" alt="YGGIB Insurance Brokers" width="154" height="56" style="height:44px"></span><span style="color:var(--on-band);font:700 1.05rem var(--display)">Yadah-G Global Insurance Brokers</span></span>
+      <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><img src="assets/logo-white.png" alt="YGGIB Insurance Brokers" width="154" height="56" style="height:48px;width:auto;display:block"><span style="color:var(--on-band);font:700 1.05rem var(--display)">Yadah-G Global Insurance Brokers</span></span>
       <span><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://x.com/" target="_blank" rel="noopener">X</a></span>
     </div>
     <p class="reg">Licensed by the National Insurance Commission (NAICOM) as an insurance broker · Member, Nigerian Council of Registered Insurance Brokers · RC registered with CAC, 2004</p>
@@ -570,7 +556,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
 </div>
 
 <div id="admin" hidden>
-  <div class="adm-top"><div class="wrap"><b style="font:800 1.1rem var(--display)">Yadah-G · Staff desk</b><span class="live" id="admMode">Preview</span><a href="#top" class="btn btn-ghost btn-sm" style="color:var(--on-band)">View site</a></div></div>
+  <div class="adm-top"><div class="wrap"><img src="assets/logo-white.png" alt="YGGIB" style="height:34px;width:auto"><b style="font:700 1rem var(--display)">Staff desk</b><span class="live" id="admMode">Preview</span><a href="#top" class="btn btn-ghost btn-sm" style="color:var(--on-band)">View site</a></div></div>
   <div class="adm-login" id="admLogin">
     <div class="panel">
       <h3>Sign in</h3>
