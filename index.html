@@ -75,10 +75,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* hero */
 .hero{background:var(--hero);color:var(--ink);position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(640px 340px at 90% 10%,rgba(23,128,42,.14),transparent 70%),
-  radial-gradient(420px 260px at 0% 100%,rgba(255,255,255,.9),transparent 70%),
-  repeating-linear-gradient(90deg,rgba(23,128,42,.05) 0 1px,transparent 1px 96px)}
+.hero-media{position:absolute;inset:0;z-index:0;background:var(--hero)}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.hero-media img.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:linear-gradient(90deg,rgba(237,247,238,.97) 0%,rgba(237,247,238,.92) 38%,rgba(237,247,238,.5) 62%,rgba(237,247,238,.12) 100%)}
+.hero-cap{position:absolute;z-index:2;right:max(16px,env(safe-area-inset-right,0px));top:14px;background:rgba(20,26,22,.62);color:#FFFFFF;font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:999px}
+@media (max-width:900px){
+  .hero-media{bottom:auto;height:250px}
+  .hero::after{background:linear-gradient(180deg,rgba(237,247,238,0) 0,rgba(237,247,238,0) 160px,var(--hero) 250px)}
+  section.hero .wrap{padding-top:230px}
+  .hero-cap{right:auto;left:max(16px,env(safe-area-inset-left,0px))}
+}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);padding-block:clamp(40px,6vw,76px) clamp(48px,7vw,88px);align-items:start}
 .hero h1{font-size:clamp(2.5rem,6.2vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero h1 em{font-style:normal;color:var(--leaf)}
@@ -117,10 +124,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* covers */
 .cover-groups{display:grid;gap:40px}
-.cg h3{font:600 .78rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.cg > h3{font:600 .78rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 .covers{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.cover{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start;grid-template-rows:auto auto 1fr auto}
-.cover .ic{width:40px;height:40px;border-radius:10px;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center}
+.cover{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.cover .ph{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--leaf-soft)}
+.cover .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.cover:hover .ph img{transform:scale(1.04)}
+.cover .ph .ic{position:absolute;left:14px;bottom:-20px;box-shadow:0 6px 14px -6px rgba(20,60,30,.4);background:var(--card)}
+.cover .cb{padding:28px 20px 20px;display:grid;gap:10px;grid-template-rows:auto 1fr auto}
+.cover .ic{width:40px;height:40px;border-radius:10px;color:var(--leaf);display:grid;place-items:center}
 .cover .ic svg{width:22px;height:22px}
 .cover p{color:var(--muted);font-size:.94rem}
 .cover .link{background:none;border:0;padding:0;color:var(--leaf);font-weight:700;cursor:pointer;text-align:left;justify-self:start}
@@ -281,6 +293,8 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
 </header>
 
 <section class="hero" id="top">
+  <div class="hero-media" id="heroMedia" aria-hidden="true"><img src="assets/photos/motor.jpg" alt="" data-k="motor" class="on" width="1600" height="893"></div>
+  <span class="hero-cap" id="heroCap">Motor</span>
   <div class="wrap">
     <div>
       <h1>We shop the insurers. <em>You keep the cover.</em></h1>
@@ -739,15 +753,28 @@ $("#qFields").addEventListener("input",e=>{const el=e.target;if(!el.dataset.k)re
   calc();});
 $("#qFields").addEventListener("change",e=>{const el=e.target;if(el.tagName==="SELECT"){vals[cur][el.dataset.k]=el.value;calc()}});
 function pickCover(id,scroll){const p=byId(id);
-  if(!p.noEst){cur=id;renderTabs();renderFields()}
+  if(!p.noEst){cur=id;renderTabs();renderFields();stopRotate();showPhoto(PHOTO[id])}
   $("#qProduct").value=p.name;$("#qDetails").value=p.noEst?"":estimateSummary();
   if(scroll)document.getElementById(p.noEst?"quote":"top").scrollIntoView({behavior:"smooth"});
 }
 $("#qGo").addEventListener("click",()=>{$("#qProduct").value=byId(cur).name;$("#qDetails").value=estimateSummary()});
 $$("[data-focus-quote]").forEach(a=>a.addEventListener("click",()=>setTimeout(()=>$("#qTabs .tab[aria-selected=true]")?.focus(),400)));
 
+/* hero photos */
+const PHOTO={motor:"motor",home:"home",health:"health",life:"life",glife:"glife",iar:"iar",fire:"fire",git:"marine",pi:"pi"};
+const CAP={motor:"Motor",marine:"Marine & goods in transit",agric:"Agriculture",fire:"Fire & special perils",home:"Home",iar:"Industrial all risk",health:"Health",life:"Life",glife:"Group life",pi:"Professional indemnity"};
+const ROTATE=["motor","marine","agric","fire","iar","home"];
+let rot=0,rotTimer=null;
+function showPhoto(k){const media=$("#heroMedia");let img=media.querySelector(`[data-k="${k}"]`);
+  const on=()=>{$$("img",media).forEach(i=>i.classList.toggle("on",i===img));$("#heroCap").textContent=CAP[k]};
+  if(!img){img=new Image();img.alt="";img.dataset.k=k;img.width=1600;img.height=893;img.src=`assets/photos/${k}.jpg`;media.append(img);img.decode().then(on,on)}else on();}
+function stopRotate(){if(rotTimer){clearInterval(rotTimer);rotTimer=null}}
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches)rotTimer=setInterval(()=>{rot=(rot+1)%ROTATE.length;showPhoto(ROTATE[rot])},5500);
+$("#qTabs").addEventListener("click",e=>{if(e.target.closest(".tab")){stopRotate();showPhoto(PHOTO[cur])}});
+$("#qFields").addEventListener("focusin",stopRotate);
+
 /* covers grid */
-$("#coverGroups").innerHTML=[["you","For you and your family"],["biz","For your business"]].map(([g,t])=>`<div class="cg"><h3>${t}</h3><div class="covers">${P.filter(p=>p.group===g).map(p=>`<article class="cover"><div class="ic"><svg viewBox="0 0 24 24">${I[p.ic]}</svg></div><div style="display:grid;gap:4px">${p.tag?`<span class="tag">${p.tag}</span>`:""}<h3>${p.name}</h3></div><p>${p.desc}</p><button class="link" data-pick="${p.id}">${p.noEst?"Talk to us":"See my estimate"} →</button></article>`).join("")}</div></div>`).join("");
+$("#coverGroups").innerHTML=[["you","For you and your family"],["biz","For your business"]].map(([g,t])=>`<div class="cg"><h3>${t}</h3><div class="covers">${P.filter(p=>p.group===g).map(p=>`<article class="cover"><div class="ph"><img src="assets/photos/${p.id==="git"?"marine":p.id}-sm.jpg" alt="" loading="lazy" width="720" height="402"><span class="ic"><svg viewBox="0 0 24 24">${I[p.ic]}</svg></span></div><div class="cb"><div style="display:grid;gap:4px">${p.tag?`<span class="tag">${p.tag}</span>`:""}<h3>${p.name}</h3></div><p>${p.desc}</p><button class="link" data-pick="${p.id}">${p.noEst?"Talk to us":"See my estimate"} →</button></div></article>`).join("")}</div></div>`).join("");
 $("#coverGroups").addEventListener("click",e=>{const b=e.target.closest("[data-pick]");if(b)pickCover(b.dataset.pick,true)});
 const opts=P.map(p=>`<option>${p.name}</option>`).join("")+"<option>Something else</option>";
 $("#qProduct").innerHTML=opts;$("#rCover").innerHTML=opts;
