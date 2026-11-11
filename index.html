@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a bright white-and-green "underwriting desk" band holds a live policy schedule; the rest of the page is a calm paper ledger of covers, claims and renewals. */
+/* Layout: a bright white-and-green band holds a quick quote request; the rest of the page is a calm paper ledger of covers, claims and renewals. */
 :root{
   --paper:#F7FAF6; --card:#FFFFFF; --ink:#141A16; --muted:#55625A; --line:#DCE6DE;
   --leaf:#17802A; --leaf-ink:#FFFFFF; --leaf-soft:#E5F3E7; --hero:#EDF7EE;
@@ -121,6 +121,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sch-total .s{font-size:.82rem;color:var(--muted)}
 .sch-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:16px 20px 20px}
 .sch-foot .hint{max-width:30ch}
+.lbl{font-size:.82rem;font-weight:600;color:var(--muted)}
+.hero-chips .chip{font-size:.85rem;padding:7px 12px}
+.hero-chips .chip[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:var(--leaf-ink)}
+#heroQuote + .done{margin:14px 20px 20px}
+@media (max-width:440px){.sch-head .no{display:none}}
 
 /* covers */
 .cover-groups{display:grid;gap:40px}
@@ -221,6 +226,25 @@ form.grid{display:grid;gap:14px}
 .ceo-sig span{font:400 .88rem var(--body);color:var(--muted)}
 @media (max-width:720px){.ceo{grid-template-columns:1fr}.ceo-ph{max-width:320px}}
 
+/* board & management */
+.people-sec{display:grid;gap:22px;margin-top:clamp(36px,5vw,60px)}
+.mvv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px}
+.mvv > div{background:var(--card);padding:20px;display:grid;gap:8px;align-content:start}
+.mvv p{color:var(--muted)}
+@media (max-width:760px){.mvv{grid-template-columns:1fr}}
+.ph3{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:18px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px;align-content:start}
+.ph-row,.mgr{display:flex;gap:14px;align-items:center;min-width:0}
+.ph-row > div,.mgr > div{min-width:0}
+.av{flex:none;width:56px;height:56px;border-radius:50%;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center;font:700 1.05rem var(--display);overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.person h4,.mgr h4{margin:0;font:700 1.05rem/1.25 var(--display)}
+.role{margin:2px 0 0;font:500 .72rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--leaf)}
+.bio{color:var(--muted);font-size:.93rem}
+.mgmt{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.mgr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+
 /* faq */
 .faq{display:grid;gap:10px;max-width:820px}
 .faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -310,7 +334,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
   <div class="wrap">
     <div>
       <h1>We shop the insurers. <em>You keep the cover.</em></h1>
-      <p class="lede">Yadah-G compares NAICOM-licensed insurers for your car, home, staff and business, places the policy, then stands beside you when you claim. Get an estimate in seconds below.</p>
+      <p class="lede">Yadah-G compares NAICOM-licensed insurers for your car, home, staff and business, places the policy, then stands beside you when you claim. Request quotes in under a minute.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#quote">Get firm quotes</a>
         <a class="btn btn-ghost" id="heroWa" href="#" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Chat on WhatsApp</a>
@@ -322,19 +346,24 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       </div>
     </div>
 
-    <div class="schedule" aria-label="Instant premium estimate">
-      <div class="sch-head"><span>Premium estimate</span><span class="no" id="schNo">YG/EST/—</span></div>
-      <div class="tabs" role="tablist" id="qTabs"></div>
-      <div class="sch-body" id="qFields"></div>
-      <div class="sch-total" aria-live="polite">
-        <span class="k" id="qTotalK">Estimated annual premium</span>
-        <span class="v" id="qTotal">—</span>
-        <span class="s" id="qTotalS"></span>
-      </div>
-      <div class="sch-foot">
-        <span class="hint">Indicative only. Final premium depends on the insurer's underwriting.</span>
-        <a class="btn btn-leaf" href="#quote" id="qGo">Get firm quotes</a>
-      </div>
+    <div class="schedule" aria-label="Request a quote">
+      <div class="sch-head"><span>Request a quote</span><span class="no">Reply within one working day</span></div>
+      <form id="heroQuote" data-kind="quote" novalidate>
+        <div class="sch-body">
+          <div class="f"><span class="lbl" id="hCoverL">What do you want to cover?</span><div class="chipset hero-chips" data-chip="product" id="heroCovers" role="group" aria-labelledby="hCoverL"></div></div>
+          <div class="row2">
+            <div class="f"><label for="hName">Your name</label><input class="inp" id="hName" name="name" required autocomplete="name"></div>
+            <div class="f"><label for="hPhone">Phone / WhatsApp</label><input class="inp" id="hPhone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="0803 000 0000"></div>
+          </div>
+          <div class="f"><label for="hDetails">Anything we should know? (optional)</label><input class="inp" id="hDetails" name="details" placeholder="E.g. 2021 Toyota Camry, private use"></div>
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" hidden></p>
+        </div>
+        <div class="sch-foot">
+          <span class="hint">A broker compares insurers and comes back to you with options. No obligation.</span>
+          <button class="btn btn-leaf" type="submit">Get quotes</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -344,7 +373,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
     <div class="sec-head">
       <p class="eyebrow">What we place</p>
       <h2>What do you want to protect?</h2>
-      <p class="lede">We cover general, life and reinsurance business. Pick a cover to see an estimate, or tell us about something unusual and we'll find the market for it.</p>
+      <p class="lede">We cover general, life and reinsurance business. Pick a cover to request quotes, or tell us about something unusual and we'll find the market for it.</p>
     </div>
     <div class="cover-groups" id="coverGroups"></div>
   </div>
@@ -389,7 +418,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
           <div class="f"><label for="qCompany">Company (optional)</label><input class="inp" id="qCompany" name="company" autocomplete="organization"></div>
         </div>
         <div class="f"><label for="qProduct">Cover</label><select class="inp" id="qProduct" name="product"></select></div>
-        <div class="f"><label for="qDetails">Details</label><textarea class="inp" id="qDetails" name="details" rows="4" placeholder="E.g. 2021 Toyota Camry, private use, Lekki"></textarea><span class="hint">Your estimate from above is added here automatically.</span></div>
+        <div class="f"><label for="qDetails">Details</label><textarea class="inp" id="qDetails" name="details" rows="4" placeholder="E.g. 2021 Toyota Camry, private use, Lekki"></textarea></div>
         <div class="f"><label>Best way to reach you</label>
           <div class="chipset" data-chip="contactVia"><button type="button" class="chip" aria-pressed="true">WhatsApp</button><button type="button" class="chip" aria-pressed="false">Call</button><button type="button" class="chip" aria-pressed="false">Email</button></div>
         </div>
@@ -536,11 +565,33 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       <div class="ceo-txt">
         <p class="eyebrow">Leadership</p>
         <h3>Led by Patrick Ikponmwosa</h3>
-        <p class="ceo-role">President / CEO</p>
-        <p>Yadah-G's promise is simple: understand your risk, find the right insurer for it, and stay with you until your claim is paid. Every client, from a single car owner to a factory with hundreds of staff, gets a broker who answers to them, not to the insurer.</p>
-        <div class="ceo-sig">Patrick Ikponmwosa<span>President / CEO, Yadah-G Global Insurance Brokers</span></div>
+        <p class="ceo-role">Founder / President &amp; CEO</p>
+        <p>An insurance practitioner with over 30 years' experience, Patrick founded Yadah-G in 2004. He is a Fellow of the Certified Pension Institute of Nigeria, an Associate of the Nigerian Council of Registered Insurance Brokers and a member of the Chartered Insurance Institute of Nigeria, and served as President of the NCRIB Lagos Chapter from 2012 to 2014.</p>
+        <p>Yadah-G's promise is simple: understand your risk, find the right insurer for it, and stay with you until your claim is paid.</p>
+        <div class="ceo-sig">Patrick Ikponmwosa<span>Founder / President &amp; CEO, Yadah-G Global Insurance Brokers</span></div>
       </div>
     </article>
+  </div>
+  <div class="wrap people-sec">
+    <div class="mvv">
+      <div><span class="eyebrow">Mission</span><p>To provide integrity-based service to our clients and build their confidence in buying insurance.</p></div>
+      <div><span class="eyebrow">Vision</span><p>A future where every family and business values insurance and buys it as a routine necessity.</p></div>
+      <div><span class="eyebrow">Values</span><p>Integrity, honesty and hard work, delivered through prompt, efficient and effective service.</p></div>
+    </div>
+    <div class="sec-head" style="margin:0"><p class="eyebrow">Board of Directors</p><h3 class="ph3">The people who oversee Yadah-G</h3></div>
+    <div class="board">
+        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">FO</span><div><h4>Alhaji Francis Ogboro</h4><p class="role">Chairman</p></div></div><p class="bio">A businessman who sits on the boards of 18 companies. He is President of the Nigeria Polo Federation and of the Nigeria-Saudi Chamber of Commerce, and chairs firms including S.G.S Inspection Services, Wavelength Technologies, SOASCO Nigeria and Associated Port &amp; Marine Development. He is a director of Dana Group, Kia Motors and Bell Oil &amp; Gas, and a member of the Institute of Directors and PESON.</p></article>
+        <article class="person"><div class="ph-row"><span class="av"><img src="assets/ceo.jpg" alt="" width="549" height="687" loading="lazy"></span><div><h4>Patrick Ikponmwosa</h4><p class="role">Founder / CEO</p></div></div><p class="bio">Over 30 years in insurance practice. Fellow of the Certified Pension Institute of Nigeria, Associate of the NCRIB and member of the Chartered Insurance Institute of Nigeria. Past President, NCRIB Lagos Chapter (2012–2014).</p></article>
+        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">PA</span><div><h4>Dr. Peter Odion Agwi</h4><p class="role">Director</p></div></div><p class="bio">Holds an MSc in Architecture and a PhD in Town Planning from Kyiv Technical University, Ukraine, with extensive international experience in construction and real estate.</p></article>
+        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">OE</span><div><h4>Engr. Otomewo P. Eberiere</h4><p class="role">Director</p></div></div><p class="bio">A civil and environmental engineering graduate of the University of Lagos who has negotiated deals across trade, energy, consulting and construction.</p></article>
+        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">HI</span><div><h4>Helen Ikponmwosa</h4><p class="role">Director</p></div></div><p class="bio">A legal practitioner with LL.M and LL.B degrees from the Universities of Lagos and Calabar, called to the Nigerian Bar in 1986. She is an Associate member of the Nigerian Institute of Chartered Arbitrators.</p></article>
+    </div>
+    <div class="sec-head" style="margin:0"><p class="eyebrow">Management</p><h3 class="ph3">The team you'll work with</h3></div>
+    <div class="mgmt">
+        <div class="mgr"><span class="av"><img src="assets/ceo.jpg" alt="" width="549" height="687" loading="lazy"></span><div><h4>Patrick Ikponmwosa</h4><p class="role">Founder / President</p></div></div>
+        <div class="mgr"><span class="av" aria-hidden="true">OO</span><div><h4>Omolaja Odufuwa</h4><p class="role">GM Technical</p></div></div>
+        <div class="mgr"><span class="av" aria-hidden="true">VU</span><div><h4>Victoria Umossoh</h4><p class="role">Accounts / Reinsurance Trainee</p></div></div>
+    </div>
   </div>
 </section>
 
@@ -593,7 +644,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       <span><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://x.com/" target="_blank" rel="noopener">X</a></span>
     </div>
     <p class="reg">Licensed by the National Insurance Commission (NAICOM) as an insurance broker · Member, Nigerian Council of Registered Insurance Brokers · RC registered with CAC, 2004</p>
-    <p>Premium estimates on this site are indicative and are not an offer of insurance. Cover starts only when an insurer accepts the risk and the premium is paid. © <span id="yr"></span> Yadah-G Global Insurance Brokers. <a href="#admin">Staff login</a></p>
+    <p>Information on this site is not an offer of insurance. Cover starts only when an insurer accepts the risk and the premium is paid. © <span id="yr"></span> Yadah-G Global Insurance Brokers. <a href="#admin">Staff login</a></p>
   </div>
 </footer>
 
@@ -625,25 +676,6 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const waURL=t=>"https://wa.me/"+PHONE+"?text="+encodeURIComponent(t);
 function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),2600)}
 
-/* ---------- Rates (editable in admin) ---------- */
-const DEFAULT_RATES={
-  motorLo:3, motorHi:5, motorTP:15000,
-  homeBLo:0.15, homeBHi:0.25, homeCLo:0.75, homeCHi:1.25,
-  fireLo:0.1, fireHi:0.3, iarLo:0.2, iarHi:0.5,
-  glifeLo:0.3, glifeHi:0.6,
-  hBasicLo:85000, hBasicHi:150000, hStdLo:150000, hStdHi:300000, hPremLo:300000, hPremHi:650000,
-  piLo:0.5, piHi:1.5, gitLo:0.15, gitHi:0.4, lifeBase:0.15, lifeAge:0.012
-};
-const RATE_LABELS={
-  motorLo:"Motor comprehensive, low (% of car value)", motorHi:"Motor comprehensive, high (%)", motorTP:"Third-party motor, private car (₦)",
-  homeBLo:"Home: building, low (%)", homeBHi:"Home: building, high (%)", homeCLo:"Home: contents, low (%)", homeCHi:"Home: contents, high (%)",
-  fireLo:"Fire & special perils, low (%)", fireHi:"Fire & special perils, high (%)", iarLo:"Industrial all risk, low (%)", iarHi:"Industrial all risk, high (%)",
-  glifeLo:"Group life, low (% of sum assured)", glifeHi:"Group life, high (%)",
-  hBasicLo:"Health basic, low (₦/person)", hBasicHi:"Health basic, high (₦/person)", hStdLo:"Health standard, low (₦)", hStdHi:"Health standard, high (₦)", hPremLo:"Health premium, low (₦)", hPremHi:"Health premium, high (₦)",
-  piLo:"Professional indemnity, low (% of limit)", piHi:"Professional indemnity, high (%)", gitLo:"Goods in transit, low (% of annual carry)", gitHi:"Goods in transit, high (%)",
-  lifeBase:"Individual life base rate (% at age 25)", lifeAge:"Individual life: extra % per year over 25"
-};
-let R={...DEFAULT_RATES};
 
 /* ---------- Covers ---------- */
 const I={
@@ -659,34 +691,16 @@ const I={
  globe:'<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17" fill="none" stroke="currentColor" stroke-width="1.5"/>'
 };
 const P=[
- {id:"motor",group:"you",name:"Motor insurance",short:"Motor",ic:"car",desc:"Comprehensive or third-party cover for private and commercial vehicles.",
-  fields:[{k:"value",l:"Vehicle value",m:1,d:18000000},{k:"cover",l:"Cover type",o:["Comprehensive","Third party only"]},{k:"use",l:"Use",o:["Private","Commercial"]}],
-  calc:v=>v.cover==="Third party only"?(v.use==="Private"?{fixed:R.motorTP,s:"Fixed minimum premium for a private car, set by NAICOM."}:{ask:"Commercial third-party rates depend on the vehicle class. We'll confirm."}):{lo:v.value*R.motorLo/100,hi:v.value*R.motorHi/100,s:"Covers your own car plus third parties. Excess and tracker terms vary by insurer."}},
- {id:"home",group:"you",name:"Home insurance",short:"Home",ic:"home",desc:"Your building and what's inside it, against fire, flood, burglary and more.",
-  fields:[{k:"building",l:"Rebuilding cost of the house",m:1,d:60000000},{k:"contents",l:"Value of contents",m:1,d:8000000}],
-  calc:v=>({lo:v.building*R.homeBLo/100+v.contents*R.homeCLo/100,hi:v.building*R.homeBHi/100+v.contents*R.homeCHi/100,s:"Householder policy: building plus contents."})},
- {id:"health",group:"you",name:"Health insurance",short:"Health",ic:"heart",desc:"HMO plans for you, your family or your staff, from basic to premium.",
-  fields:[{k:"people",l:"Number of people",d:4,n:1},{k:"plan",l:"Plan level",o:["Basic","Standard","Premium"]}],
-  calc:v=>{const t={Basic:["hBasicLo","hBasicHi"],Standard:["hStdLo","hStdHi"],Premium:["hPremLo","hPremHi"]}[v.plan];const p=Math.max(1,v.people);return{lo:p*R[t[0]],hi:p*R[t[1]],s:`${p} ${p===1?"person":"people"}, ${v.plan.toLowerCase()} plan, per year.`}}},
- {id:"life",group:"you",name:"Life insurance",short:"Life",ic:"shield",desc:"Term life and savings plans that look after your family if you're not there.",
-  fields:[{k:"age",l:"Your age",d:35,n:1},{k:"sum",l:"Sum assured",m:1,d:20000000}],
-  calc:v=>{const r=(R.lifeBase+Math.max(0,v.age-25)*R.lifeAge)/100;return{lo:v.sum*r*.8,hi:v.sum*r*1.25,s:"Term life, non-smoker. Medicals may be needed for larger sums."}}},
- {id:"glife",group:"biz",name:"Group life assurance",short:"Group life",ic:"people",tag:"Required by law",desc:"Statutory cover paying staff families at least 3× annual emoluments on death.",
-  fields:[{k:"staff",l:"Number of staff",d:40,n:1},{k:"salary",l:"Average annual pay per staff",m:1,d:4800000},{k:"mult",l:"Benefit multiple (× annual pay)",d:3,n:1}],
-  calc:v=>{const sa=v.staff*v.salary*Math.max(3,v.mult);return{lo:sa*R.glifeLo/100,hi:sa*R.glifeHi/100,s:`Total sum assured ${naira(sa)}.${v.mult<3?" Raised to the legal minimum of 3×.":""}`}}},
- {id:"iar",group:"biz",name:"Industrial all risk",short:"Industrial all risk",ic:"factory",desc:"One policy for a factory's buildings, plant, machinery and stock.",
-  fields:[{k:"si",l:"Total sum insured",m:1,d:1500000000}],
-  calc:v=>({lo:v.si*R.iarLo/100,hi:v.si*R.iarHi/100,s:"Rate depends on the industry, fire protection and claims history."})},
- {id:"fire",group:"biz",name:"Fire & special perils",short:"Fire",ic:"flame",desc:"Commercial buildings and stock against fire, flood, storm and riot.",
-  fields:[{k:"si",l:"Sum insured",m:1,d:250000000}],
-  calc:v=>({lo:v.si*R.fireLo/100,hi:v.si*R.fireHi/100,s:"Special perils can be added or removed to suit the premises."})},
- {id:"git",group:"biz",name:"Goods in transit & marine",short:"Goods in transit",ic:"truck",desc:"Cargo by road, sea or air, single trip or annual cover.",
-  fields:[{k:"carry",l:"Value of goods moved per year",m:1,d:500000000}],
-  calc:v=>({lo:v.carry*R.gitLo/100,hi:v.carry*R.gitHi/100,s:"Annual declaration policy. Single-trip marine is priced per shipment."})},
- {id:"pi",group:"biz",name:"Professional indemnity",short:"Prof. indemnity",ic:"brief",desc:"Protects consultants and professionals against claims of negligence.",
-  fields:[{k:"limit",l:"Limit of indemnity",m:1,d:100000000}],
-  calc:v=>({lo:v.limit*R.piLo/100,hi:v.limit*R.piHi/100,s:"Depends on profession, fee income and claims history."})},
- {id:"re",group:"biz",name:"Reinsurance placement",short:"Reinsurance",ic:"globe",desc:"Treaty and facultative placement for insurers, with local and international markets.",fields:[],calc:()=>({ask:"Tell us about the risk or treaty and we'll go to market."}),noEst:1}
+ {id:"motor",group:"you",name:"Motor insurance",short:"Motor",ic:"car",desc:"Comprehensive or third-party cover for private and commercial vehicles."},
+ {id:"home",group:"you",name:"Home insurance",short:"Home",ic:"home",desc:"Your building and what's inside it, against fire, flood, burglary and more."},
+ {id:"health",group:"you",name:"Health insurance",short:"Health",ic:"heart",desc:"HMO plans for you, your family or your staff, from basic to premium."},
+ {id:"life",group:"you",name:"Life insurance",short:"Life",ic:"shield",desc:"Term life and savings plans that look after your family if you're not there."},
+ {id:"glife",group:"biz",name:"Group life assurance",short:"Group life",ic:"people",tag:"Required by law",desc:"Statutory cover paying staff families at least 3× annual emoluments on death."},
+ {id:"iar",group:"biz",name:"Industrial all risk",short:"Industrial all risk",ic:"factory",desc:"One policy for a factory's buildings, plant, machinery and stock."},
+ {id:"fire",group:"biz",name:"Fire & special perils",short:"Fire",ic:"flame",desc:"Commercial buildings and stock against fire, flood, storm and riot."},
+ {id:"git",group:"biz",name:"Goods in transit & marine",short:"Goods in transit",ic:"truck",desc:"Cargo by road, sea or air, single trip or annual cover."},
+ {id:"pi",group:"biz",name:"Professional indemnity",short:"Prof. indemnity",ic:"brief",desc:"Protects consultants and professionals against claims of negligence."},
+ {id:"re",group:"biz",name:"Reinsurance placement",short:"Reinsurance",ic:"globe",desc:"Treaty and facultative placement for insurers, with local and international markets."}
 ];
 const byId=id=>P.find(p=>p.id===id);
 
@@ -695,20 +709,19 @@ const API={live:false};
 const LS="yadahg-preview-v1";
 const lsGet=()=>{try{return JSON.parse(localStorage.getItem(LS))||null}catch{return null}};
 const lsSet=d=>{try{localStorage.setItem(LS,JSON.stringify(d))}catch{}};
-let mem=lsGet()||{items:[],rates:null};
+let mem=lsGet()||{items:[]};
 function seed(){
   if(mem.items.some(i=>i.ref==="YG-C-DEMO01"))return;
   const d=n=>new Date(Date.now()-n*864e5).toISOString();
   mem.items.push(
    {kind:"claim",ref:"YG-C-DEMO01",example:true,created:d(9),name:"Example: Adaeze Okafor",phone:"08030000000",policy:"MTR/LAG/24/00871",claimType:"Motor accident / damage",incidentDate:d(10).slice(0,10),description:"Rear-ended at Lekki toll gate. Bumper and boot lid damaged. Police report obtained.",status:"With insurer",history:[{s:"Received",at:d(9)},{s:"Documents review",at:d(8),note:"Photos and police report received."},{s:"With insurer",at:d(5),note:"Submitted to insurer. Loss adjuster inspecting Thursday."}]},
-   {kind:"quote",ref:"YG-Q-DEMO02",example:true,created:d(1),name:"Example: Tunde Bakare",phone:"08120000000",product:"Motor insurance",details:"2021 Toyota Camry, private use. Estimate ₦540,000 – ₦900,000.",contactVia:"WhatsApp",status:"New"},
+   {kind:"quote",ref:"YG-Q-DEMO02",example:true,created:d(1),name:"Example: Tunde Bakare",phone:"08120000000",product:"Motor insurance",details:"2021 Toyota Camry, private use.",contactVia:"WhatsApp",status:"New"},
    {kind:"renewal",ref:"YG-R-DEMO03",example:true,created:d(20),name:"Example: Bright Path Schools",phone:"08090000000",product:"Group life assurance",expiry:new Date(Date.now()+12*864e5).toISOString().slice(0,10),insurer:"Current insurer",status:"New"});
   lsSet(mem);
 }
 async function init(){
   try{const r=await fetch("/api/health",{cache:"no-store"});if(r.ok){const j=await r.json();API.live=j&&j.ok===true}}catch{}
-  if(API.live){try{const r=await fetch("/api/config");if(r.ok){const j=await r.json();if(j.rates)R={...DEFAULT_RATES,...j.rates}}}catch{}}
-  else{seed();if(mem.rates)R={...DEFAULT_RATES,...mem.rates};$("#previewBar").hidden=false;$("#trackDemo").hidden=false}
+  if(!API.live){seed();$("#previewBar").hidden=false;$("#trackDemo").hidden=false}
 }
 const mkRef=k=>{const t=new Date(),p=n=>String(n).padStart(2,"0");return`YG-${k}-${String(t.getFullYear()).slice(2)}${p(t.getMonth()+1)}${p(t.getDate())}-${Math.random().toString(36).slice(2,6).toUpperCase()}`};
 const KIND_LETTER={quote:"Q",claim:"C",renewal:"R",review:"V",callback:"B"};
@@ -733,56 +746,15 @@ async function track(ref,phone){
   return c;
 }
 
-/* ---------- Quote estimator ---------- */
-let cur="motor";const vals={};
-function renderTabs(){
-  $("#qTabs").innerHTML=P.filter(p=>!p.noEst).map(p=>`<button class="tab" role="tab" aria-selected="${p.id===cur}" data-id="${p.id}">${p.short}</button>`).join("");
+/* ---------- Hero quote request ---------- */
+$("#heroCovers").innerHTML=[...P.map(p=>`<button type="button" class="chip" data-id="${p.id}" aria-pressed="${p.id==="motor"}">${p.short}</button>`),`<button type="button" class="chip" data-id="" aria-pressed="false">Something else</button>`].join("");
+function pickCover(id,scroll){
+  $$("#heroCovers .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.id===id));
+  stopRotate();if(PHOTO[id])showPhoto(PHOTO[id]);
+  $("#qProduct").value=byId(id).name;
+  if(scroll){document.getElementById("top").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("#hName").focus({preventScroll:true}),600)}
 }
-function renderFields(){
-  const p=byId(cur);vals[cur]=vals[cur]||{};
-  const v=vals[cur];
-  const html=p.fields.map(f=>{
-    const id="qf-"+cur+"-"+f.k;
-    if(f.o){v[f.k]=v[f.k]||f.o[0];return`<div class="f"><label for="${id}">${f.l}</label><select class="inp" id="${id}" data-k="${f.k}">${f.o.map(o=>`<option${o===v[f.k]?" selected":""}>${o}</option>`).join("")}</select></div>`}
-    if(v[f.k]==null)v[f.k]=f.d;
-    if(f.m)return`<div class="f"><label for="${id}">${f.l}</label><div class="money"><input class="inp" id="${id}" data-k="${f.k}" data-m="1" inputmode="numeric" value="${Math.round(v[f.k]).toLocaleString("en-NG")}"></div></div>`;
-    return`<div class="f"><label for="${id}">${f.l}</label><input class="inp" id="${id}" data-k="${f.k}" inputmode="numeric" value="${v[f.k]}" style="font-family:var(--mono)"></div>`;
-  });
-  // pair short selects in rows
-  let out=[],buf=[];p.fields.forEach((f,i)=>{if(f.o||f.n){buf.push(html[i]);if(buf.length===2){out.push(`<div class="row2">${buf.join("")}</div>`);buf=[]}}else{if(buf.length){out.push(buf.join(""));buf=[]}out.push(html[i])}});
-  if(buf.length)out.push(buf.join(""));
-  $("#qFields").innerHTML=out.join("");
-  calc();
-}
-let lastEst="";
-function calc(){
-  const p=byId(cur),v=vals[cur],r=p.calc(v);
-  const tot=$("#qTotal"),s=$("#qTotalS");
-  if(r.fixed){tot.textContent=naira(r.fixed);lastEst=naira(r.fixed)}
-  else if(r.ask){tot.textContent="Quoted on request";lastEst=""}
-  else{tot.textContent=`${naira(r.lo)} – ${naira(r.hi)}`;lastEst=`${naira(r.lo)} – ${naira(r.hi)}`}
-  s.textContent=r.s||r.ask||"";
-  const t=new Date();$("#schNo").textContent=`YG/EST/${String(t.getFullYear()).slice(2)}/${cur.toUpperCase()}`;
-}
-function estimateSummary(){
-  const p=byId(cur),v=vals[cur]||{};
-  const parts=p.fields.map(f=>`${f.l}: ${f.m?naira(v[f.k]):v[f.k]}`);
-  return `${parts.join(", ")}.${lastEst?` Online estimate ${lastEst}.`:""}`;
-}
-$("#qTabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;cur=b.dataset.id;renderTabs();renderFields()});
-$("#qFields").addEventListener("input",e=>{const el=e.target;if(!el.dataset.k)return;
-  if(el.dataset.m){const pos=el.value.length-el.selectionStart;const n=num(el.value);vals[cur][el.dataset.k]=n;el.value=n?n.toLocaleString("en-NG"):"";try{el.setSelectionRange(el.value.length-pos,el.value.length-pos)}catch{}}
-  else if(el.tagName==="SELECT")vals[cur][el.dataset.k]=el.value;
-  else vals[cur][el.dataset.k]=num(el.value);
-  calc();});
-$("#qFields").addEventListener("change",e=>{const el=e.target;if(el.tagName==="SELECT"){vals[cur][el.dataset.k]=el.value;calc()}});
-function pickCover(id,scroll){const p=byId(id);
-  if(!p.noEst){cur=id;renderTabs();renderFields();stopRotate();showPhoto(PHOTO[id])}
-  $("#qProduct").value=p.name;$("#qDetails").value=p.noEst?"":estimateSummary();
-  if(scroll)document.getElementById(p.noEst?"quote":"top").scrollIntoView({behavior:"smooth"});
-}
-$("#qGo").addEventListener("click",()=>{$("#qProduct").value=byId(cur).name;$("#qDetails").value=estimateSummary()});
-$$("[data-focus-quote]").forEach(a=>a.addEventListener("click",()=>setTimeout(()=>$("#qTabs .tab[aria-selected=true]")?.focus(),400)));
+$$("[data-focus-quote]").forEach(a=>a.addEventListener("click",()=>setTimeout(()=>$("#hName").focus({preventScroll:true}),500)));
 
 /* hero photos */
 const PHOTO={motor:"motor",home:"home",health:"health",life:"life",glife:"glife",iar:"iar",fire:"fire",git:"marine",pi:"pi"};
@@ -794,11 +766,11 @@ function showPhoto(k){const media=$("#heroMedia");let img=media.querySelector(`[
   if(!img){img=new Image();img.alt="";img.dataset.k=k;img.width=1600;img.height=893;img.src=`assets/photos/${k}.jpg`;media.append(img);img.decode().then(on,on)}else on();}
 function stopRotate(){if(rotTimer){clearInterval(rotTimer);rotTimer=null}}
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches)rotTimer=setInterval(()=>{rot=(rot+1)%ROTATE.length;showPhoto(ROTATE[rot])},5500);
-$("#qTabs").addEventListener("click",e=>{if(e.target.closest(".tab")){stopRotate();showPhoto(PHOTO[cur])}});
-$("#qFields").addEventListener("focusin",stopRotate);
+$("#heroCovers").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){stopRotate();if(PHOTO[b.dataset.id])showPhoto(PHOTO[b.dataset.id])}});
+$("#heroQuote").addEventListener("focusin",stopRotate);
 
 /* covers grid */
-$("#coverGroups").innerHTML=[["you","For you and your family"],["biz","For your business"]].map(([g,t])=>`<div class="cg"><h3>${t}</h3><div class="covers">${P.filter(p=>p.group===g).map(p=>`<article class="cover"><div class="ph"><img src="assets/photos/${p.id==="git"?"marine":p.id}-sm.jpg" alt="" loading="lazy" width="720" height="402"><span class="ic"><svg viewBox="0 0 24 24">${I[p.ic]}</svg></span></div><div class="cb"><div style="display:grid;gap:4px">${p.tag?`<span class="tag">${p.tag}</span>`:""}<h3>${p.name}</h3></div><p>${p.desc}</p><button class="link" data-pick="${p.id}">${p.noEst?"Talk to us":"See my estimate"} →</button></div></article>`).join("")}</div></div>`).join("");
+$("#coverGroups").innerHTML=[["you","For you and your family"],["biz","For your business"]].map(([g,t])=>`<div class="cg"><h3>${t}</h3><div class="covers">${P.filter(p=>p.group===g).map(p=>`<article class="cover"><div class="ph"><img src="assets/photos/${p.id==="git"?"marine":p.id}-sm.jpg" alt="" loading="lazy" width="720" height="402"><span class="ic"><svg viewBox="0 0 24 24">${I[p.ic]}</svg></span></div><div class="cb"><div style="display:grid;gap:4px">${p.tag?`<span class="tag">${p.tag}</span>`:""}<h3>${p.name}</h3></div><p>${p.desc}</p><button class="link" data-pick="${p.id}">Get a quote →</button></div></article>`).join("")}</div></div>`).join("");
 $("#coverGroups").addEventListener("click",e=>{const b=e.target.closest("[data-pick]");if(b)pickCover(b.dataset.pick,true)});
 const opts=P.map(p=>`<option>${p.name}</option>`).join("")+"<option>Something else</option>";
 $("#qProduct").innerHTML=opts;$("#rCover").innerHTML=opts;
@@ -867,7 +839,7 @@ $("#cDate").max=new Date().toISOString().slice(0,10);
 
 /* ---------- Admin ---------- */
 let PW="",admTab="quote",admItems=[];
-const TABS=[["quote","Quote requests"],["claim","Claims"],["renewal","Renewals"],["review","Risk reviews"],["callback","Call backs"],["rates","Estimate rates"]];
+const TABS=[["quote","Quote requests"],["claim","Claims"],["renewal","Renewals"],["review","Risk reviews"],["callback","Call backs"]];
 const ST={quote:["New","Contacted","Quoted","Won","Lost"],review:["New","Scheduled","Done"],callback:["New","Called","No answer"],renewal:["New","Reminded","Renewed","Lost"],claim:[...STAGES,"Declined"]};
 async function admFetch(path,opt={}){const r=await fetch(path,{...opt,headers:{"content-type":"application/json",authorization:"Bearer "+PW,...(opt.headers||{})}});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Request failed");return j}
 async function admLoad(){
@@ -877,20 +849,13 @@ async function admLoad(){
 function daysTo(d){return Math.ceil((new Date(d+"T00:00:00")-new Date(new Date().toDateString()))/864e5)}
 function admRender(){
   const c=k=>admItems.filter(i=>i.kind===k).length;
-  $("#admNav").innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" aria-current="${k===admTab}"><span>${l}</span>${k!=="rates"?`<span class="cnt">${c(k)}</span>`:""}</button>`).join("");
+  $("#admNav").innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" aria-current="${k===admTab}"><span>${l}</span><span class="cnt">${c(k)}</span></button>`).join("");
   const main=$("#admMain");
   const open=admItems.filter(i=>(i.kind==="quote"&&i.status==="New")).length;
   const activeClaims=admItems.filter(i=>i.kind==="claim"&&!["Settled","Declined"].includes(i.status)).length;
   const due=admItems.filter(i=>i.kind==="renewal"&&i.status!=="Renewed"&&daysTo(i.expiry)<=30).length;
   const cb=admItems.filter(i=>i.kind==="callback"&&i.status==="New").length;
   let html=`<div class="stats"><div class="stat"><div class="k">New quote requests</div><div class="v">${open}</div></div><div class="stat"><div class="k">Open claims</div><div class="v">${activeClaims}</div></div><div class="stat"><div class="k">Renewals due ≤30 days</div><div class="v">${due}</div></div><div class="stat"><div class="k">Calls to return</div><div class="v">${cb}</div></div></div>`;
-  if(admTab==="rates"){
-    html+=`<div class="panel"><h3>Estimate rates</h3><p class="sub">These drive the premium estimator on the website. Percentages are of the value entered.</p><form id="rateForm" class="grid"><div class="rates">${Object.keys(DEFAULT_RATES).map(k=>`<div class="f"><label for="rt-${k}">${RATE_LABELS[k]}</label><input class="inp" id="rt-${k}" data-k="${k}" inputmode="decimal" value="${R[k]}" style="font-family:var(--mono)"></div>`).join("")}</div><div class="item-act"><button class="btn btn-leaf" type="submit">Save rates</button><button class="btn btn-ghost" type="button" id="rateReset">Restore defaults</button></div></form></div>`;
-    main.innerHTML=html;
-    $("#rateForm").onsubmit=async e=>{e.preventDefault();const nr={};$$("#rateForm [data-k]").forEach(i=>nr[i.dataset.k]=parseFloat(i.value)||0);await saveRates(nr)};
-    $("#rateReset").onclick=()=>saveRates({...DEFAULT_RATES});
-    return;
-  }
   let list=admItems.filter(i=>i.kind===admTab);
   if(admTab==="renewal")list.sort((a,b)=>a.expiry.localeCompare(b.expiry));
   html+=`<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px"><h3>${TABS.find(t=>t[0]===admTab)[1]}</h3><button class="btn btn-ghost btn-sm" id="csvBtn">Copy as CSV</button></div>`;
@@ -910,10 +875,6 @@ function itemHTML(i){
     <pre>${esc(body)}</pre>${files?`<div class="item-act"><span class="hint">Files:</span>${files}</div>`:""}
     ${i.kind==="claim"&&i.history?`<div class="hint">${i.history.map(h=>`${fmtD(h.at)}: ${esc(h.s)}${h.note?" – "+esc(h.note):""}`).join(" · ")}</div>`:""}
     <div class="item-act"><select class="inp" data-status>${ST[i.kind].map(s=>`<option${s===i.status?" selected":""}>${s}</option>`).join("")}</select>${i.kind==="claim"?`<input class="inp note" data-note placeholder="Note the customer will see (optional)">`:""}<button class="btn btn-leaf btn-sm" data-save>Save</button><a class="btn btn-ghost btn-sm" href="${waURL(waMsg).replace(PHONE,"234"+digits(i.phone).slice(-10))}" target="_blank" rel="noopener">WhatsApp</a></div></div>`;
-}
-async function saveRates(nr){
-  try{if(API.live)await admFetch("/api/admin/config",{method:"PUT",body:JSON.stringify({rates:nr})});else{mem.rates=nr;lsSet(mem)}
-    R={...DEFAULT_RATES,...nr};renderFields();toast("Rates saved");admRender()}catch(x){toast(x.message)}
 }
 $("#admNav").addEventListener("click",e=>{const b=e.target.closest("[data-t]");if(b){admTab=b.dataset.t;admRender()}});
 $("#admMain").addEventListener("click",async e=>{
@@ -936,8 +897,7 @@ function route(){const adm=location.hash==="#admin";$("#site").hidden=adm;$("#ad
   if(adm){$("#admMode").textContent=API.live?"Live":"Preview";$("#admLoginSub").textContent=API.live?"Enter the staff password.":"Preview mode: any password works, and the data is example data in this browser.";window.scrollTo(0,0)}}
 addEventListener("hashchange",route);
 
-init().then(()=>{renderTabs();renderFields();route()});
-renderTabs();renderFields();
+init().then(route);
 })();
 </script>
 
