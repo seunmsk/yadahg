@@ -245,6 +245,29 @@ form.grid{display:grid;gap:14px}
 .mgmt{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .mgr{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
 
+/* NAICOM seal */
+.seal{display:flex;align-items:center;gap:12px;margin-top:14px;padding:10px 14px 10px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:max-content}
+.seal img{width:46px;height:auto;flex:none}
+.seal span{display:grid;font-size:.82rem;color:var(--muted);line-height:1.35}
+.seal b{color:var(--ink);font-size:.88rem}
+footer .seal{background:#FFFFFF;border:0;margin-top:0}
+/* stats */
+.stats-band{background:var(--card);border-block:1px solid var(--line)}
+.stats-band .wrap{padding-block:clamp(34px,5vw,52px);display:grid;gap:18px}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.nums div{display:grid;gap:4px;padding:6px 0 6px 18px;border-left:3px solid var(--leaf)}
+.nums b{font:800 clamp(2rem,4.4vw,3rem)/1 var(--display);font-variant-numeric:tabular-nums;color:var(--ink)}
+.nums span{color:var(--muted);font-weight:500}
+.about-link{justify-self:start;color:var(--leaf);font-weight:700;text-decoration:none}
+.about-link:hover{text-decoration:underline}
+@media (max-width:760px){.nums{grid-template-columns:1fr 1fr;row-gap:22px}}
+/* mobile tidy */
+@media (max-width:640px){
+  .biz-list div{grid-template-columns:1fr;gap:4px}
+  .biz-list span{text-align:left}
+  footer .wrap{padding-bottom:110px}
+}
+
 /* faq */
 .faq{display:grid;gap:10px;max-width:820px}
 .faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -317,7 +340,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       <a href="#claims">Claims</a>
       <a href="#renewals">Renewals</a>
       <a href="#business">Business</a>
-      <a href="#about">About</a>
+      <a href="about.html">About</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="top-cta">
@@ -344,6 +367,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
         <div class="cred"><b>NCRIB</b>Registered member</div>
         <div class="cred"><b>CAC</b>Incorporated 24 Feb 2004</div>
       </div>
+      <div class="seal"><img src="assets/naicom.png" alt="National Insurance Commission (NAICOM) seal" width="114" height="121"><span><b>Licensed by the National Insurance Commission</b>General business, life and reinsurance broking</span></div>
     </div>
 
     <div class="schedule" aria-label="Request a quote">
@@ -376,6 +400,18 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       <p class="lede">We cover general, life and reinsurance business. Pick a cover to request quotes, or tell us about something unusual and we'll find the market for it.</p>
     </div>
     <div class="cover-groups" id="coverGroups"></div>
+  </div>
+</section>
+
+<section class="stats-band" aria-label="Yadah-G in numbers">
+  <div class="wrap">
+    <div class="nums">
+      <div><b>20+</b><span>Years in business</span></div>
+      <div><b>300+</b><span>Happy clients</span></div>
+      <div><b>1,500+</b><span>Projects succeeded</span></div>
+      <div><b>50</b><span>Awards achieved</span></div>
+    </div>
+    <a class="about-link" href="about.html">Meet our board and management →</a>
   </div>
 </section>
 
@@ -544,56 +580,6 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
   </div>
 </section>
 
-<section class="sec" id="about">
-  <div class="wrap about-grid">
-    <div class="sec-head" style="margin:0">
-      <p class="eyebrow">About Yadah-G</p>
-      <h2>A Nigerian broker, on your side of the table, for over 20 years.</h2>
-      <p class="lede">Yadah-G Global Insurance Brokers is a 100% indigenous firm, incorporated in 2004 to practise as an insurance broker and consultant. Our job is simple: understand your risk, find the right insurer for it, and make sure you're paid when you claim.</p>
-    </div>
-    <dl class="ledger">
-      <div><dt>Incorporated</dt><dd>24 February 2004, Corporate Affairs Commission</dd></div>
-      <div><dt>Regulator</dt><dd>Licensed by the National Insurance Commission (NAICOM)</dd></div>
-      <div><dt>Licence scope</dt><dd>General business, life business and reinsurance broking</dd></div>
-      <div><dt>Membership</dt><dd>Nigerian Council of Registered Insurance Brokers (NCRIB)</dd></div>
-      <div><dt>Office</dt><dd>Plot 13, Port Harcourt, Cowrie Creek Estate, Ikate Elegushi, Lekki, Lagos</dd></div>
-    </dl>
-  </div>
-  <div class="wrap">
-    <article class="ceo">
-      <div class="ceo-ph"><img src="assets/ceo.jpg" alt="Patrick Ikponmwosa, President and CEO of Yadah-G Global Insurance Brokers" width="549" height="687" loading="lazy"></div>
-      <div class="ceo-txt">
-        <p class="eyebrow">Leadership</p>
-        <h3>Led by Patrick Ikponmwosa</h3>
-        <p class="ceo-role">Founder / President &amp; CEO</p>
-        <p>An insurance practitioner with over 30 years' experience, Patrick founded Yadah-G in 2004. He is a Fellow of the Certified Pension Institute of Nigeria, an Associate of the Nigerian Council of Registered Insurance Brokers and a member of the Chartered Insurance Institute of Nigeria, and served as President of the NCRIB Lagos Chapter from 2012 to 2014.</p>
-        <p>Yadah-G's promise is simple: understand your risk, find the right insurer for it, and stay with you until your claim is paid.</p>
-        <div class="ceo-sig">Patrick Ikponmwosa<span>Founder / President &amp; CEO, Yadah-G Global Insurance Brokers</span></div>
-      </div>
-    </article>
-  </div>
-  <div class="wrap people-sec">
-    <div class="mvv">
-      <div><span class="eyebrow">Mission</span><p>To provide integrity-based service to our clients and build their confidence in buying insurance.</p></div>
-      <div><span class="eyebrow">Vision</span><p>A future where every family and business values insurance and buys it as a routine necessity.</p></div>
-      <div><span class="eyebrow">Values</span><p>Integrity, honesty and hard work, delivered through prompt, efficient and effective service.</p></div>
-    </div>
-    <div class="sec-head" style="margin:0"><p class="eyebrow">Board of Directors</p><h3 class="ph3">The people who oversee Yadah-G</h3></div>
-    <div class="board">
-        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">FO</span><div><h4>Alhaji Francis Ogboro</h4><p class="role">Chairman</p></div></div><p class="bio">A businessman who sits on the boards of 18 companies. He is President of the Nigeria Polo Federation and of the Nigeria-Saudi Chamber of Commerce, and chairs firms including S.G.S Inspection Services, Wavelength Technologies, SOASCO Nigeria and Associated Port &amp; Marine Development. He is a director of Dana Group, Kia Motors and Bell Oil &amp; Gas, and a member of the Institute of Directors and PESON.</p></article>
-        <article class="person"><div class="ph-row"><span class="av"><img src="assets/ceo.jpg" alt="" width="549" height="687" loading="lazy"></span><div><h4>Patrick Ikponmwosa</h4><p class="role">Founder / CEO</p></div></div><p class="bio">Over 30 years in insurance practice. Fellow of the Certified Pension Institute of Nigeria, Associate of the NCRIB and member of the Chartered Insurance Institute of Nigeria. Past President, NCRIB Lagos Chapter (2012–2014).</p></article>
-        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">PA</span><div><h4>Dr. Peter Odion Agwi</h4><p class="role">Director</p></div></div><p class="bio">Holds an MSc in Architecture and a PhD in Town Planning from Kyiv Technical University, Ukraine, with extensive international experience in construction and real estate.</p></article>
-        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">OE</span><div><h4>Engr. Otomewo P. Eberiere</h4><p class="role">Director</p></div></div><p class="bio">A civil and environmental engineering graduate of the University of Lagos who has negotiated deals across trade, energy, consulting and construction.</p></article>
-        <article class="person"><div class="ph-row"><span class="av" aria-hidden="true">HI</span><div><h4>Helen Ikponmwosa</h4><p class="role">Director</p></div></div><p class="bio">A legal practitioner with LL.M and LL.B degrees from the Universities of Lagos and Calabar, called to the Nigerian Bar in 1986. She is an Associate member of the Nigerian Institute of Chartered Arbitrators.</p></article>
-    </div>
-    <div class="sec-head" style="margin:0"><p class="eyebrow">Management</p><h3 class="ph3">The team you'll work with</h3></div>
-    <div class="mgmt">
-        <div class="mgr"><span class="av"><img src="assets/ceo.jpg" alt="" width="549" height="687" loading="lazy"></span><div><h4>Patrick Ikponmwosa</h4><p class="role">Founder / President</p></div></div>
-        <div class="mgr"><span class="av" aria-hidden="true">OO</span><div><h4>Omolaja Odufuwa</h4><p class="role">GM Technical</p></div></div>
-        <div class="mgr"><span class="av" aria-hidden="true">VU</span><div><h4>Victoria Umossoh</h4><p class="role">Accounts / Reinsurance Trainee</p></div></div>
-    </div>
-  </div>
-</section>
 
 <section class="sec steps-sec" style="padding-block:clamp(48px,7vw,80px)">
   <div class="wrap">
@@ -643,7 +629,7 @@ footer .reg{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
       <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><img src="assets/logo-white.png" alt="YGGIB Insurance Brokers" width="154" height="56" style="height:48px;width:auto;display:block"><span style="color:var(--on-band);font:700 1.05rem var(--display)">Yadah-G Global Insurance Brokers</span></span>
       <span><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://x.com/" target="_blank" rel="noopener">X</a></span>
     </div>
-    <p class="reg">Licensed by the National Insurance Commission (NAICOM) as an insurance broker · Member, Nigerian Council of Registered Insurance Brokers · RC registered with CAC, 2004</p>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><img src="assets/naicom.png" alt="NAICOM seal" width="114" height="121" style="width:52px;height:auto;background:#FFFFFF;border-radius:50%;padding:3px"><p class="reg" style="margin:0;flex:1 1 260px">Licensed by the National Insurance Commission (NAICOM) as an insurance broker · Member, Nigerian Council of Registered Insurance Brokers · RC registered with CAC, 2004</p></div>
     <p>Information on this site is not an offer of insurance. Cover starts only when an insurer accepts the risk and the premium is paid. © <span id="yr"></span> Yadah-G Global Insurance Brokers. <a href="#admin">Staff login</a></p>
   </div>
 </footer>
